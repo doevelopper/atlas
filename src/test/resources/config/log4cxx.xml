@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' >
+    <!--
+            Output the log message to system console.
+            Applocation shoud be launched from command line.
+    -->
+
+    <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <param name="threshold" value="TRACE"/>
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %Y [%-6p] %y - [%15.15t] - %-35c{1.} -- %Y %m%y%n"/>
+        </layout>
+        <!-- <filter class="org.apache.log4j.varia.LevelMatchFilter">
+            <param name="LevelToMatch" value="INFO" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+        <filter class="org.apache.log4j.varia.DenyAllFilter"/> -->
+    </appender>
+
+<!--    <category name="com.github.doevelopper.night.owl">-->
+<!--        <priority value="info" />-->
+<!--        <appender-ref ref="ConsoleAppender"/>-->
+<!--    </category>-->
+
+<!--    <logger name="com.github.doevelopper.night.owl" additivity="false">-->
+<!--        <level value="ERROR" />-->
+<!--        <appender-ref ref="ConsoleAppender" />-->
+<!--    </logger>-->
+
+    <root>
+       <priority value ="all" />
+       <appender-ref ref="ConsoleAppender" />
+    </root>
+
+</log4j:configuration>

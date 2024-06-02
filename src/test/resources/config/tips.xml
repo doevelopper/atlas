@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' >
+    <!--
+            Output the log message to system console.
+            Applocation shoud be launched from command line.
+    -->
+
+    <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <param name="threshold" value="TRACE"/>
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %Y [%-6p] %y - [%15.15t] - %-35c{1.} -- %Y %m%y%n"/>
+        </layout>
+        <!-- <filter class="org.apache.log4j.varia.LevelMatchFilter">
+            <param name="LevelToMatch" value="INFO" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+        <filter class="org.apache.log4j.varia.DenyAllFilter"/> -->
+    </appender>
+
+    <appender name="ASYNC_STDOUT" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <appender name="ASYNC_TSE_SERVER" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="TSE_SERVER"/>
+    </appender>
+
+    <appender name="ASYNC_METRICS" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="METRICS_LOGGER"/>
+    </appender>
+
+    <appender name="ASYNC_REQUEST" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="REQUEST_LOGGER"/>
+    </appender>
+
+    <appender name="ASYNC_LONG_RUNNING_TRX" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="LONG_RUNNING_TRX_LOGGER"/>
+    </appender>
+
+    <appender name="ASYNC_SAX_PARSER" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="SAX_PARSER"/>
+    </appender>
+
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} (%-6c) [%-6p] [%15.15t] (%-10.20l) -- %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="TSE_SERVER" class="org.apache.log4j.RollingFileAppender">
+        <param name="File"   value="./logs/tseserver.log" />
+        <param name="Append" value="true" />
+        <!-- Create 5 backup logfiles. -->
+        <param name="MaxBackupIndex" value="15" />
+        <param name="MaxFileSize" value="5MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="METRICS_LOGGER" class="org.apache.log4j.RollingFileAppender">
+        <param name="File"   value="./logs/tsemetrics.log" />
+        <param name="Append" value="true" />
+        <!-- Create 5 backup logfiles. -->
+        <param name="MaxBackupIndex" value="5" />
+        <param name="MaxFileSize" value="50MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="REQUEST_LOGGER" class="org.apache.log4j.RollingFileAppender">
+        <param name="File"   value="./logs/tserequest.log" />
+        <param name="Append" value="true" />
+        <!-- Create 5 backup logfiles. -->
+        <param name="MaxBackupIndex" value="5" />
+        <param name="MaxFileSize" value="50MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="LONG_RUNNING_TRX_LOGGER" class="org.apache.log4j.RollingFileAppender">
+        <param name="File"   value="./logs/longrunningtrx.log" />
+        <param name="Append" value="true" />
+        <!-- Create 5 backup logfiles. -->
+        <param name="MaxBackupIndex" value="5" />
+        <param name="MaxFileSize" value="50MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="SAX_PARSER" class="org.apache.log4j.RollingFileAppender">
+        <param name="File"   value="./logs/SAXParser.log" />
+        <param name="Append" value="true" />
+        <!-- Create 5 backup logfiles. -->
+        <param name="MaxBackupIndex" value="5" />
+        <param name="MaxFileSize" value="50MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="CACHE_NOTIFY_LOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/cachenotify.log" />
+        <param name="Append" value="true" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="MaxFileSize" value="50MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="SOCKET_LOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/tsesocket.log" />
+        <param name="Append" value="true" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="MaxFileSize" value="1000MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="CACHE_LOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/cacheupdate.log" />
+        <param name="Append" value="true" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="MaxFileSize" value="100MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="LDC_LOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/ldc.log" />
+        <param name="Append" value="true" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="MaxFileSize" value="50MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="AUTO_RULES_ERRORS" class="org.apache.log4j.RollingFileAppender">
+        <param name="File"   value="./logs/auto_rules_errors.log" />
+        <param name="Append" value="true" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="MaxFileSize" value="50MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%d: %t %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="ORDERNO_LOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="./logs/orderno.log" />
+        <param name="Append" value="false" />
+        <param name="MaxBackupIndex" value="7" />
+        <param name="MaxFileSize" value="1MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="TimeZone" value="Europe/Berlin"/>
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <category name="com.github.doevelopper.night.owl">
+        <priority value="all" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.Server">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.Service.TransactionOrchestrator">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.Manager.TseManagerUtil">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.Manager.ServerSocketThread">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.DBAccess.DataBlobHelper">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.DBAccess.DistCache">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.DBAccess.DataAccessObject">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.DBAccess.HistoricalDataAccessObject">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.Common.DiskspaceWatcher">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.Manager.TseManagerUtil">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.Xray.AsyncJsonContainer">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.Xray.XraySender">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.Xray.XrayClient">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.BFCacheUpdate">
+        <priority value="info" />
+    </category>
+
+    <category name="com.github.doevelopper.night.owl.MarketRoutingCacheUpdater">
+        <priority value="info" />
+    </category>
+
+    <!--
+        <category name="com.github.doevelopper.night.owl.Rules.RuleUtil.TSI">
+            <priority value="error" />
+        </category>
+    -->
+
+    <logger name="com.github.doevelopper.night.owl.Metrics" additivity="false">
+        <level value="info" />
+        <appender-ref ref="METRICS_LOGGER" />
+    </logger>
+
+    <!--
+        <logger name="com.github.doevelopper.night.owl.Request" additivity="false">
+            <level value="info" />
+            <appender-ref ref="REQUEST_LOGGER" />
+        </logger>
+
+        <logger name="com.github.doevelopper.night.owl.Xform.XformClientXML" additivity="false">
+            <level value="info" />
+            <appender-ref ref="SAX_PARSER" />
+        </logger>
+    -->
+
+    <logger name="com.github.doevelopper.night.owl.Request" additivity="false">
+        <level value="info" />
+        <appender-ref ref="REQUEST_LOGGER" />
+    </logger>
+
+    <!--
+        <logger name="com.github.doevelopper.night.owl.LongRunningTrx" additivity="false">
+            <level value="info" />
+            <appender-ref ref="ASYNC_LONG_RUNNING_TRX" />
+        </logger>
+    -->
+
+    <logger name="com.github.doevelopper.night.owl.CacheUpdate.CacheUpdateService" additivity="false">
+        <level value="info" />
+        <appender-ref ref="CACHE_NOTIFY_LOG"/>
+    </logger>
+
+    <!--
+        <logger name="com.github.doevelopper.night.owl.Manager.SocketRequestImpl" additivity="false">
+            <level value="debug" />
+            <appender-ref ref="SOCKET_LOG"/>
+        </logger>
+    -->
+
+    <logger name="com.github.doevelopper.night.owl.CacheUpdate.CacheUpdateService" additivity="false">
+        <level value="info" />
+        <appender-ref ref="CACHE_LOG"/>
+    </logger>
+
+    <logger name="com.github.doevelopper.night.owl.AutoRulesErrors" additivity="false">
+        <level value="info" />
+        <appender-ref ref="AUTO_RULES_ERRORS" />
+    </logger>
+
+    <logger name="com.github.doevelopper.night.owl.Xform.XformClientShoppingXML" additivity="false">
+        <level value="info" />
+        <appender-ref ref="SAX_PARSER" />
+    </logger>
+
+    <logger name="com.github.doevelopper.night.owl.Adapter.DiskCacheAdapter"                 additivity="true" > <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.Manager.DiskCacheManager"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.Manager.DiskCacheThread"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DiskCache"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AccompaniedTravelDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnCombFareClassDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnFareDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnMarketCarriersDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnZoneDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnZoneInfoDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddonZoneSITADAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AdvResTktDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ATPResNationZonesDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BankerSellRateDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BaseFareRuleDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BasicBookingRequestDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BlackoutDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BookingCodeConvDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BookingCodeExceptionSequenceDAO" additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BoundFareDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BrandDAO"                        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BrandedCarrierDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BrandedFareAppDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CabinDAO"                        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierApplicationDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierCombinationDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierFlightDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierMixedClassDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierPreferenceDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CircleTripProvisionDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CircleTripRuleDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CombinabilityRuleDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CommissionCapDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ContractPreferenceDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CopMinimumDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CopParticipatingNationDAO"       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CorpIdDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CurrencyDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CurrencySelectionDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CustomerDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DateOverrideRuleDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DayTimeAppInfoDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DBEGlobalClassDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DepositsDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DifferentialsDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DiscountDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DSTDAO"                          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.EligibilityDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.EndOnEndDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ETicketCarrierDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ETicketPseudoDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareByRuleAppDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareByRuleAppRuleTariffDAO"      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareByRuleCtrlDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareByRuleItemDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareCalcConfigDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareClassAppDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareClassRestDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDAO"                         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispCldInfPsgTypeDAO"        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispInclDsplTypeDAO"         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispInclFareTypeDAO"         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispInclRuleTrfDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplayInclCdDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplayPrefDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplayPrefSegDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplaySortDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplayWebDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispRec1PsgTypeDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispRec8PsgTypeDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispTemplateDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispTemplateSegDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareTypeMatrixDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareTypeQualifierDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FCLimitationDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDAddOnFareDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDHeaderMsgDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDHeaderMsgTextDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSFareBasisCombDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSGlobalDirDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSPsgTypeDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSSortingDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSuppressFareDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FlightAppRuleDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FltTrkCntryGrpDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FootNoteCtrlDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FreeBaggageDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FreeBaggageNotExpiredDAO"        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GeneralFareRuleDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GeneralRuleAppDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GenericTaxCodeDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GeoRuleDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GlobalDirDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GroupsDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.HipMileageExceptDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.IndustryFareApplDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.IndustryFareBasisModDAO"         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.IndustryPricingApplDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.IsMultilateralDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.JLimitationDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.JointCarrierDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.LocDAO"                          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarketCarriers2DAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarketCarriersDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarketRoutingDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarkupSecFilterDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarriedCabinDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MaxStayRestrictionDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MileageDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MileageSubstitutionDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MileageSurchExceptDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinFareApplDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinFareDefaultLogicDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinFareFareTypeGrpDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinFareRuleLevelExclDAO"         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinStayRestrictionDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MiscFareTagDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MsgTextDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiAirportCityDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiAirportsByCityDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiCityAirportDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiTransportCityDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiTransportDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiTransportLocsDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NationDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NationInAreaDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NationInSubAreaDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NationInZoneDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NegFareCalcDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NegFareRestDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NegFareSecurityDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NoPNRFareTypeGroupDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NoPNROptionsDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NUCAllCarriersDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NUCDAO"                          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.OpenJawRestrictionDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.OpenJawRuleDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PaxTypeDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PaxTypeMatrixDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PenaltyDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcAbsorbDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcCollectMethDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcEquipTypeExemptDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcEssAirSvcDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcMultiAirportDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcPFCDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcTktDesigExceptDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PULimitationDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ReissueSequenceDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RoundTripRuleDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RoutingDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RoutingForMarketDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RuleApplicationDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RuleCatAlphaCodeDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RuleCategoryDescDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SalesNationRestrDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SalesRestrictionDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SamePointDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SeasonalApplDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SectorSurchargeDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ServiceRec1DAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StateDAO"                        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StateInAreaDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StateInSubAreaDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StateInZoneDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StopoversDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SurchargesDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SurfaceSectorApplDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SurfaceSectorExemptDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SurfaceTransfersDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TariffCrossRefDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TariffInhibitsDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TariffMileageAddonDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TariffRuleRestDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxAkHiFactorDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxCodeDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxNationDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxReissueDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxSegAbsorbDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TicketEndorsementsDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TicketStockDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ToursDAO"                        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TpdPsrDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.Transfers1DAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TravelRestrictionDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TSIDAO"                          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.VendorCrossRefDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.VisitAnotherCountryDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.VoluntaryChangesDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.WaiverDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.YQYRFeesDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.YQYRFeesNonConcurDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ZoneDAO"                         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AccompaniedTravelHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnCombFareClassHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnFareHistoricalDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnMarketCarriersHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnZoneHistoricalDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddOnZoneInfoHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AddonZoneSITAHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.AdvResTktHistoricalDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ATPResNationZonesHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BankerSellRateHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BaseFareRuleHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BasicBookingRequestHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BlackoutHistoricalDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BookingCodeConvHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BookingCodeExceptionSequenceHistoricalDAO" additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BoundFareHistoricalDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BrandHistoricalDAO"                        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BrandedCarrierHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.BrandedFareAppHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CabinHistoricalDAO"                        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierApplicationHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierCombinationHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierFlightHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierMixedClassHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CarrierPreferenceHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CircleTripProvisionHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CircleTripRuleHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CombinabilityRuleHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CommissionCapHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ContractPreferenceHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CopMinimumHistoricalDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CopParticipatingNationHistoricalDAO"       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CorpIdHistoricalDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CurrencyHistoricalDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CurrencySelectionHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.CustomerHistoricalDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DateOverrideRuleHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DayTimeAppInfoHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DBEGlobalClassHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DepositsHistoricalDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DifferentialsHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DiscountHistoricalDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.DSTHistoricalDAO"                          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.EligibilityHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.EndOnEndHistoricalDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ETicketCarrierHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ETicketPseudoHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareByRuleAppHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareByRuleAppRuleTariffHistoricalDAO"      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareByRuleCtrlHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareByRuleItemHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareCalcConfigHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareClassAppHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareClassRestHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareHistoricalDAO"                         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispCldInfPsgTypeHistoricalDAO"        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispInclDsplTypeHistoricalDAO"         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispInclFareTypeHistoricalDAO"         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispInclRuleTrfHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplayInclCdHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplayPrefHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplayPrefSegHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplaySortHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDisplayWebHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispRec1PsgTypeHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispRec8PsgTypeHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispTemplateHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareDispTemplateSegHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareTypeMatrixHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FareTypeQualifierHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FCLimitationHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDAddOnFareHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDHeaderMsgHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDHeaderMsgTextHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSFareBasisCombHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSGlobalDirHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSPsgTypeHistoricalDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSSortingHistoricalDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FDSuppressFareHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FlightAppRuleHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FltTrkCntryGrpHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FootNoteCtrlHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FreeBaggageHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.FreeBaggageNotExpiredHistoricalDAO"        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GeneralFareRuleHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GeneralRuleAppHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GenericTaxCodeHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GeoRuleHistoricalDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GlobalDirHistoricalDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.GroupsHistoricalDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.HipMileageExceptHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.IndustryFareApplHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.IndustryFareBasisModHistoricalDAO"         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.IndustryPricingApplHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.IsMultilateralHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.JLimitationHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.JointCarrierHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.LocHistoricalDAO"                          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarketCarriers2HistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarketCarriersHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarketRoutingHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarkupSecFilterHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MarriedCabinHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MaxStayRestrictionHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MileageHistoricalDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MileageSubstitutionHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MileageSurchExceptHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinFareApplHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinFareDefaultLogicHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinFareFareTypeGrpHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinFareRuleLevelExclHistoricalDAO"         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MinStayRestrictionHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MiscFareTagHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MsgTextHistoricalDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiAirportCityHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiAirportsByCityHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiCityAirportHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiTransportCityHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiTransportHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.MultiTransportLocsHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NationHistoricalDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NationInAreaHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NationInSubAreaHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NationInZoneHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NegFareCalcHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NegFareRestHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NegFareSecurityHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NoPNRFareTypeGroupHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NoPNROptionsHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NUCAllCarriersHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.NUCHistoricalDAO"                          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.OpenJawRestrictionHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.OpenJawRuleHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PaxTypeHistoricalDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PaxTypeMatrixHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PenaltyHistoricalDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcAbsorbHistoricalDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcCollectMethHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcEquipTypeExemptHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcEssAirSvcHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcMultiAirportHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcPFCHistoricalDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PfcTktDesigExceptHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.PULimitationHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ReissueSequenceHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RoundTripRuleHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RoutingHistoricalDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RoutingForMarketHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RuleApplicationHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RuleCatAlphaCodeHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.RuleCategoryDescHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SalesNationRestrHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SalesRestrictionHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SamePointHistoricalDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SeasonalApplHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SectorSurchargeHistoricalDAO"              additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ServiceRec1HistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StateHistoricalDAO"                        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StateInAreaHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StateInSubAreaHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StateInZoneHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.StopoversHistoricalDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SurchargesHistoricalDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SurfaceSectorApplHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SurfaceSectorExemptHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.SurfaceTransfersHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TariffCrossRefHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TariffInhibitsHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TariffMileageAddonHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TariffRuleRestHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxAkHiFactorHistoricalDAO"                additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxCodeHistoricalDAO"                      additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxNationHistoricalDAO"                    additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxReissueHistoricalDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxSegAbsorbHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TicketEndorsementsHistoricalDAO"           additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TicketStockHistoricalDAO"                  additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ToursHistoricalDAO"                        additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TpdPsrHistoricalDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TPMExclusionHistoricalDAO"                 additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.Transfers1HistoricalDAO"                   additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TravelRestrictionHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TSIHistoricalDAO"                          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.VendorCrossRefHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.VisitAnotherCountryHistoricalDAO"          additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.VoluntaryChangesHistoricalDAO"             additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.WaiverHistoricalDAO"                       additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.YQYRFeesHistoricalDAO"                     additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.YQYRFeesNonConcurHistoricalDAO"            additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.ZoneHistoricalDAO"                         additivity="false"> <level value="info" /> <appender-ref ref="LDC_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxRulesRecordDAO"                         additivity="false"> <level value="info" /> <appender-ref ref="CACHE_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.DBAccess.TaxRulesRecordHistoricalDAO"               additivity="false"> <level value="info" /> <appender-ref ref="CACHE_LOG" /> </logger>
+    <logger name="com.github.doevelopper.night.owl.Adapter.CacheNotifyAdapterOrderNo"                  additivity="false" >
+        <level value="info" />
+        <appender-ref ref="ORDERNO_LOG" />
+    </logger>
+
+    <root>
+        <priority value ="all" />
+        <appender-ref ref="ConsoleAppender" />
+        <!--       <appender-ref ref="TSE_SERVER" />-->
+    </root>
+
+</log4j:configuration>
