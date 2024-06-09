@@ -70,16 +70,26 @@ target_link_libraries(${PROJECT_NAME}.test
 
 add_executable (
     ${PROJECT_NAME}.test.bin
-        com/github/doevelopper/atlas/semver/VersionTest.hpp
-        com/github/doevelopper/atlas/semver/VersionTest.cpp
-        com/github/doevelopper/atlas/storage/BasePtrTest.cpp
-        com/github/doevelopper/atlas/storage/BasePtrTest.hpp
-        com/github/doevelopper/atlas/storage/CircularBufferTest.cpp
-        com/github/doevelopper/atlas/storage/CircularBufferTest.hpp
-        com/github/doevelopper/atlas/utils/ShellHandleTest.cpp
-        com/github/doevelopper/atlas/utils/ShellHandleTest.hpp
-        com/github/doevelopper/atlas/utils/FileSystemHandleTest.cpp
-        com/github/doevelopper/atlas/utils/FileSystemHandleTest.hpp
+#        com/github/doevelopper/atlas/semver/VersionTest.hpp
+#        com/github/doevelopper/atlas/semver/VersionTest.cpp
+#        com/github/doevelopper/atlas/storage/BasePtrTest.cpp
+#        com/github/doevelopper/atlas/storage/BasePtrTest.hpp
+#        com/github/doevelopper/atlas/storage/CircularBufferTest.cpp
+#        com/github/doevelopper/atlas/storage/CircularBufferTest.hpp
+#        com/github/doevelopper/atlas/utils/ShellHandleTest.cpp
+#        com/github/doevelopper/atlas/utils/ShellHandleTest.hpp
+#        com/github/doevelopper/atlas/utils/FileSystemHandleTest.cpp
+#        com/github/doevelopper/atlas/utils/FileSystemHandleTest.hpp
+#        com/github/doevelopper/atlas/utils/SingletonTest.cpp
+#        com/github/doevelopper/atlas/utils/SingletonTest.hpp
+#        com/github/doevelopper/atlas/utils/TimeFixtureTest.cpp
+#        com/github/doevelopper/atlas/utils/TimeFixtureTest.hpp
+#        com/github/doevelopper/atlas/events/obs/SubjectTest.cpp
+#        com/github/doevelopper/atlas/events/obs/SubjectTest.hpp
+        com/github/doevelopper/atlas/events/pub/PublisherTest.cpp
+        com/github/doevelopper/atlas/events/pub/PublisherTest.hpp
+        com/github/doevelopper/atlas/events/pub/SubscriberTest.cpp
+        com/github/doevelopper/atlas/events/pub/SubscriberTest.hpp
 )
 
 target_link_libraries(

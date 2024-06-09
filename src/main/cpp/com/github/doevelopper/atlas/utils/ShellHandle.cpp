@@ -5,7 +5,7 @@
 using namespace com::github::doevelopper::atlas::utils;
 
 log4cxx::LoggerPtr ShellHandle::logger =
-    log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.utils.Version"));
+    log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.utils.ShellHandle"));
 
 ShellHandle::ShellHandle() noexcept
 {

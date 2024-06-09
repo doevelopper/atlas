@@ -99,6 +99,22 @@ add_library(
         com/github/doevelopper/atlas/utils/ShellHandle.hpp
         com/github/doevelopper/atlas/utils/FileSystemHandle.cpp
         com/github/doevelopper/atlas/utils/FileSystemHandle.hpp
+        com/github/doevelopper/atlas/semver/GitRevision.hpp
+        com/github/doevelopper/atlas/utils/Singleton.hpp
+        com/github/doevelopper/atlas/utils/NoOp.cpp
+        com/github/doevelopper/atlas/utils/NoOp.hpp
+        com/github/doevelopper/atlas/utils/TimeFixture.cpp
+        com/github/doevelopper/atlas/utils/TimeFixture.hpp
+        com/github/doevelopper/atlas/events/obs/Subject.cpp
+        com/github/doevelopper/atlas/events/obs/Subject.hpp
+        com/github/doevelopper/atlas/events/pub/Publisher.cpp
+        com/github/doevelopper/atlas/events/pub/Publisher.hpp
+        com/github/doevelopper/atlas/events/pub/Subscriber.cpp
+        com/github/doevelopper/atlas/events/pub/Subscriber.hpp
+        com/github/doevelopper/atlas/events/pub/IBroker.cpp
+        com/github/doevelopper/atlas/events/pub/IBroker.hpp
+        com/github/doevelopper/atlas/events/pub/IPublisher.hpp
+        com/github/doevelopper/atlas/events/pub/ISubscriber.hpp
 )
 
 target_compile_features(${PROJECT_NAME}.main

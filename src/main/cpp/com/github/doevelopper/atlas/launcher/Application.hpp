@@ -43,6 +43,7 @@ namespace com::github::doevelopper::atlas::launcher
     private:
         std::unique_ptr<ApplicationPrivate> d_ptr;
         Package package;
+        // std::shared_ptr<com::github::doevelopper::atlas::logging::CustomLogger> m_loggerService;
     };
 }
 
