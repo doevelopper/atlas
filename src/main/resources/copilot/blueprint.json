@@ -58,5 +58,556 @@
     "resources": "Base toi sur  ...",
     "expectations": "Ta reponse doit ..."
   }
+,
+  {
+    "job": "DevOps Engineer",
+    "role": "A DevOps Engineer plays a crucial role in unifying and automating the processes between software development and IT teams. They help create more efficient and reliable systems by fostering a culture of collaboration, optimizing workflow, and integrating various phases of the development life cycle.",
+    "Responsibilities": [
+        "- Infrastructure Management: Managing and optimizing infrastructure resources, including servers, databases, and network systems.",
+        "- Continuous Integration and Continuous Deployment (CI/CD): Implementing and maintaining CI/CD pipelines for automated building, testing, and deployment of software.",
+        "- Automation: Automating repetitive tasks related to software development and system administration.",
+        "- Monitoring and Performance Tuning: Setting up and maintaining monitoring systems to track the performance of applications and infrastructure. Also involves troubleshooting and resolving any performance issues.",
+        "- Collaboration with Development and Operations Teams: Bridging the gap between development and operations teams to ensure smooth software development, deployment, and operations.",
+        "- Security and Compliance: Implementing security measures and ensuring compliance with security best practices and regulations.",
+        "- Disaster Recovery and Backup: Developing and maintaining disaster recovery plans, including regular backups of systems and data.",
+        "- Cloud Management: Managing cloud-based environments, including deployment, scaling, and optimization of cloud resources."
+    ],
+    "Skills": [
+      "- Coding and Scripting: Proficiency in scripting languages like Python, Bash, or similar, and an understanding of coding practices.",
+      "- System Administration: Strong background in Linux/Unix administration and a good understanding of Windows environments.",
+      "- Networking Knowledge: Understanding of network protocols, IP networking, VPNs, DNS, load balancing, and firewalls.",
+      "- Cloud Platforms: Experience with cloud service providers like AWS, Azure, or Google Cloud Platform.",
+      "- Containerization and Orchestration: Knowledge of container technologies like Docker and container orchestration tools like Kubernetes.",
+      "- Automation Tools: Familiarity with automation tools such as Ansible, Puppet, or Chef.",
+      "- Monitoring Tools: Experience with monitoring and logging tools such as Nagios, Prometheus, ELK stack, etc.",
+      "- Security and Compliance: Understanding of security principles and compliance requirements related to DevOps."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Documentation Specialist",
+    "role": "A Documentation Specialist is key in ensuring that all technical and product-related information is accurately and clearly documented. This role is crucial for facilitating effective communication between technical teams and end-users, as well as for maintaining a reliable and accessible knowledge base for products and systems.",
+    "Responsibilities": [
+      "- Creating and Maintaining Documentation: Developing and maintaining comprehensive documentation for various purposes, such as user manuals, installation guides, system operation, and maintenance documentation.",
+      "- Technical Writing: Writing clear, concise, and accurate technical content that is accessible to target audiences, including both technical and non-technical users.",
+      "- Document Management: Organizing and managing document storage and retrieval, ensuring documentation is current, accurate, and readily accessible.",
+      "- Collaboration with Technical Teams: Working closely with technical teams, such as developers and engineers, to understand the product or process and translate technical information into user-friendly documentation.",
+      "- Quality Assurance for Documents: Ensuring consistency and quality in documentation, adhering to standardized formats and guidelines.",
+      "- Feedback Integration: Incorporating feedback from users and stakeholders to improve documentation.",
+      "- Version Control: Managing versions of documents, particularly important for keeping track of updates and revisions.",
+      "- Training Materials Development: Creating training materials and guides for users and internal staff."
+    ],
+    "Skills": [
+      "- Technical Writing Skills: Excellent writing skills, with the ability to convey complex technical information in a clear and understandable manner.",
+      "- Attention to Detail: High level of attention to detail to ensure accuracy and clarity in documentation.",
+      "- Technical Proficiency: Some level of technical understanding relevant to the field or industry, enabling effective communication with technical teams.",
+      "- Organizational Skills: Strong organizational skills to manage multiple documents and versions effectively.",
+      "- Communication Skills: Good interpersonal and communication skills for interacting with different stakeholders and understanding their documentation needs.",
+      "- Tools Proficiency: Familiarity with documentation tools and software, such as Microsoft Office, Adobe FrameMaker, MadCap Flare, or similar.",
+      "- Editing and Proofreading: Skills in editing and proofreading to ensure high-quality final documents.",
+      "- Adaptability: Ability to adapt to different writing styles and formats as required by different types of documentation."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Graphic Designer",
+    "role": "A Graphic Designer plays a crucial role in creating visual concepts that communicate ideas, inspire, inform, and captivate consumers. They develop the overall layout and production design for various applications such as advertisements, brochures, magazines, and corporate reports. Their work is integral to marketing, branding, and communicating messages effectively through visual means.",
+    "Responsibilities": [
+      "- Design Creation: Developing visual concepts and designs for various media, including websites, advertising, books, magazines, posters, product packaging, exhibitions, and displays.",
+      "- Brand Identity Development: Creating and maintaining a consistent brand identity through various visual elements like logos, typography, and color palettes.",
+      "- Client Collaboration: Working with clients or internal teams to understand design needs, objectives, and target audiences.",
+      "- Visual Communication: Conveying ideas and messages through visual elements effectively.",
+      "- Design Software Proficiency: Utilizing graphic design software such as Adobe Creative Suite (Photoshop, Illustrator, InDesign) to create or enhance designs.",
+      "- Project Management: Managing design projects from conception to delivery, ensuring adherence to deadlines and client specifications.",
+      "- Feedback Implementation: Receiving feedback and making revisions to designs as needed.",
+      "- Print and Production Knowledge: Understanding of print processes and preparing designs for print where necessary."
+    ],
+    "Skills": [
+      "- Creativity and Artistic Ability: Strong creative and artistic skills to develop visually appealing and effective designs.",
+      "- Technical Proficiency: Proficiency in graphic design software, primarily Adobe Creative Suite.",
+      "- Attention to Detail: Keen attention to detail for creating precise and high-quality designs.",
+      "- Communication Skills: Ability to communicate design concepts and understand client needs effectively.",
+      "- Time Management: Skill in managing time efficiently, particularly when working on multiple projects.",
+      "- Typography, Layout, and Color Theory: Strong understanding of typography, layout, and color theory.",
+      "- Problem-Solving: Ability to solve design challenges and adapt designs to fit client needs and feedback.",
+      "- Collaboration: Ability to work well in a team, often coordinating with other designers, marketers, and content creators."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Project Manager",
+    "role": "The Project Manager plays a critical role in ensuring that a project is completed on time, within budget, and to the required quality standards. They serve as the bridge between the project team and stakeholders, and are responsible for the overall success of the project.",
+    "Responsibilities": [
+      "- Project Planning and Scheduling: Developing detailed project plans, including scope, timelines, and budget. They are responsible for setting milestones and deadlines.",
+      "- Resource Management: Allocating and managing resources (human, technical, material) efficiently to ensure project success.",
+      "- Team Leadership and Coordination: Leading the project team and coordinating the efforts of team members and third-party contractors or consultants in order to deliver projects according to plan.",
+      "- Stakeholder Communication: Regularly communicating with stakeholders to provide project updates, gather requirements, and address any concerns.",
+      "- Risk Management: Identifying potential risks and developing strategies to mitigate them. This includes monitoring and managing changes to the project scope, schedule, and costs.",
+      "- Quality Assurance: Ensuring the quality of the deliverables meets the agreed-upon standards and requirements.",
+      "- Budget Management: Estimating, budgeting, and controlling costs to ensure the project is completed within the approved budget.",
+      "- Problem Solving and Decision Making: Addressing issues and challenges that arise during the project and making informed decisions to keep the project on track."
+    ],
+    "Skills": [
+      "- Leadership and Team Management: Strong leadership skills to motivate and manage the project team effectively.",
+      "- Communication and Interpersonal Skills: Excellent communication skills for interacting with team members, stakeholders, and clients.",
+      "- Organizational and Time-Management Skills: Ability to organize tasks, manage time effectively, and keep the project on schedule.",
+      "- Analytical and Problem-Solving Skills: Proficiency in identifying problems, analyzing possible solutions, and making sound decisions to resolve them.",
+      "- Project Management Tools and Techniques: Knowledge of various project management methodologies (like Agile, Waterfall, etc.) and proficiency in project management software.",
+      "- Financial Management: Understanding of budgeting, forecasting, and financial management.",
+      "- Risk Management: Ability to assess and mitigate risks to the project."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "QA Tester (Quality Assurance Tester)",
+    "role": "QA Testers are essential in the software development process, ensuring that the final product is functional, user-friendly, and free of defects. They play a critical role in maintaining the overall quality of the software, directly impacting user satisfaction and product reliability.",
+    "Responsibilities": [
+      "- Test Planning and Design: Creating detailed test plans and test cases based on the software requirements and specifications.",
+      "- Test Execution: Conducting a range of tests, which may include functional, regression, performance, and usability testing, to ensure the software meets the specified standards and requirements",
+      "- Bug Identification and Reporting: Identifying, documenting, and reporting bugs and issues found during testing. This often involves using bug tracking software.",
+      "- Quality Metrics Monitoring: Monitoring various quality metrics, such as defect densities and open defect counts.",
+      "- Collaboration with Development Team: Working closely with software developers to communicate bugs and issues, and retesting once fixes have been made.",
+      "- Test Automation (for some QA Testers): Developing and implementing automated test scripts and frameworks to streamline the testing process.",
+      "- User Scenario Testing: Simulating user scenarios to ensure the software works in real-world situations.",
+      "- Feedback and Improvement Recommendations: Providing feedback to the development team and suggesting improvements to enhance software quality and user experience."
+    ],
+    "Skills": [
+      "- Attention to Detail: Keen attention to detail to spot issues and inconsistencies in software applications.",
+      "- Analytical Skills: Strong analytical skills to develop thorough testing strategies and identify the root cause of issues.",
+      "- Technical Proficiency: Knowledge of testing tools and software, and for some positions, programming skills for test automation.",
+      "- Communication Skills: Effective communication skills for reporting bugs and collaborating with the development team.",
+      "- Problem-Solving Skills: Ability to think critically and solve complex testing problems.",
+      "- Adaptability: Flexibility to adapt to different types of software and changing testing requirements.",
+      "- Understanding of Software Development Life Cycle (SDLC): Knowledge of various stages of software development to understand the context of the testing.",
+      "- Teamwork: Ability to work well in a team environment, as testing often involves collaboration with other QA testers and developers."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "UX Designer (User Experience Designer)",
+    "role": "A UX Designer plays a pivotal role in ensuring that a product not only meets the functional requirements but also provides a satisfying, intuitive, and accessible experience for the user. They focus on the overall feel of the product, and how well the product experience aligns with user needs and expectations.",
+    "Responsibilities": [
+      "- User Research: Conducting research to understand the needs, behaviors, and motivations of users. This often involves methods like surveys, interviews, and usability testing.",
+      "- Designing User Experiences: Creating design solutions that provide a seamless and effective user experience. This includes considering the entire journey of the user, from initial engagement through long-term usage.",
+      "- Creating User Personas and Scenarios: Developing user personas and scenarios to guide design decisions, ensuring that the product meets the real needs of its users.",
+      "- Wireframing and Prototyping: Developing wireframes, prototypes, and interaction models to visualize and test design concepts.",
+      "- Usability Testing and Feedback Analysis: Conducting usability tests and analyzing user feedback to refine and improve the design.",
+      "- Collaboration with UI Designers and Developers: Working closely with UI designers to ensure that the visual design supports the user experience, and collaborating with developers to ensure the technical feasibility of designs.",
+      "- Accessibility and Inclusivity Design: Ensuring that the product is accessible and inclusive, meeting the needs of users with various abilities and backgrounds.",
+      "- Design Strategy and Vision: Contributing to the overall strategy and vision of the product, aligning the user experience with business goals."
+    ],
+    "Skills": [
+      "- Empathy and User-Centric Approach: Strong ability to empathize with users, understanding their needs and perspectives.",
+      "- Research and Analytical Skills: Proficiency in various user research methodologies and the ability to analyze and synthesize research findings.",
+      "- Problem-Solving Skills: Creativity and innovation in solving user experience problems.",
+      "- Technical Proficiency: Knowledge of UX design tools such as Sketch, Adobe XD, Figma, or similar, and an understanding of how designs translate into code.",
+      "- Communication Skills: Excellent communication and presentation skills for articulating design decisions and processes to team members and stakeholders.",
+      "- Collaborative Approach: Ability to work effectively in a team, incorporating feedback from various sources into the design.",
+      "- Knowledge of Human-Computer Interaction: Understanding principles of human-computer interaction and designing for various interfaces.",
+      "- Adaptability: Flexibility to adapt to changing requirements and project needs."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "UI Designer (User Interface Designer):",
+    "role": "A UI Designer is crucial in creating the visual and interactive elements of a product that users interact with directly. Their role is central to making digital interfaces both visually appealing and functional, enhancing the overall user experience.",
+    "Responsibilities": [
+      "- Interface Design: Designing user interfaces for software and applications, focusing on the look and feel, presentation, and interactivity of the product.",
+      "- Visual Elements Creation: Developing visual elements such as menus, tabs, widgets, and buttons, ensuring they are aesthetically pleasing and align with brand guidelines.",
+      "- Prototyping and Wireframing: Creating prototypes and wireframes to visualize the user interface and user interactions.",
+      "- User-Centered Design: Ensuring that the interface is designed with the end-user in mind, focusing on ease of use and improving the user experience.",
+      "- Collaboration with UX Designers and Developers: Working closely with UX designers to integrate user experience aspects into the design and collaborating with developers to ensure accurate implementation of designs.",
+      "- Feedback Implementation: Incorporating feedback from user testing and stakeholders into the design to improve functionality and user satisfaction.",
+      "- Design System and Guidelines: Developing and maintaining design systems and style guidelines to ensure consistency across various components and platforms.",
+      "- Responsive Design: Creating designs that are adaptable to different screen sizes and devices."
+    ],
+    "Skills": [
+      "- Visual Design Skills: Strong skills in visual design, typography, color theory, and graphic design.",
+      "- Proficiency in Design Tools: Expertise in UI design tools such as Adobe Creative Suite, Sketch, Figma, or similar software.",
+      "- Attention to Detail: A keen eye for detail to ensure visual coherence and an attractive user interface.",
+      "- Creativity and Innovation: Creativity in designing engaging and visually appealing interfaces.",
+      "- Communication Skills: Effective communication skills for presenting ideas and designs to stakeholders and team members.",
+      "- User Empathy: An understanding of user behavior and needs to create user-centric designs.",
+      "- Technical Understanding: Basic understanding of front-end development to ensure feasible and implementable designs.",
+      "- Collaboration: Ability to work effectively with cross-functional teams, including UX designers, developers, and product managers."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Technical Writer",
+    "role": "A Technical Writer plays a vital role in bridging the gap between complex technical information and the users who need to understand it. They are responsible for creating documentation that is essential for user guidance, compliance, and knowledge transfer in technical fields.",
+    "Responsibilities": [
+      "- Creating Technical Documentation: Developing clear and concise technical documentation, such as user manuals, installation guides, technical specifications, and API documentation.",
+      "- Understanding and Conveying Technical Information: Analyzing and understanding complex technical information and conveying it in a format that is easily understandable to the target audience, which may vary from end-users to technical professionals.",
+      "- Collaboration with Subject Matter Experts: Working closely with subject matter experts, such as engineers, developers, and scientists, to ensure the accuracy and relevance of the technical content.",
+      "- Editing and Proofreading: Editing and proofreading technical documents to ensure clarity, grammatical accuracy, and consistency.",
+      "- Document Design and Layout: Designing the layout and visual aspects of documents to enhance readability and user engagement.",
+      "- Usability Testing: Conducting usability testing on documentation to ensure the information is accessible and easy to understand for the end-user.",
+      "- Maintaining Document Versions: Managing updates and revisions to technical documents, maintaining version control to ensure users have access to the most current information.",
+      "- Compliance with Standards: Ensuring all documentation complies with industry standards and legal requirements, particularly for technical and safety information."
+    ],
+    "Skills": [
+      "- Strong Writing and Editing Skills: Excellent writing, editing, and proofreading skills, with a focus on clarity, grammar, and technical accuracy.",
+      "- Technical Proficiency: Ability to understand complex technical concepts and translate them into clear, concise, and understandable text.",
+      "- Research Skills: Strong research skills to gather comprehensive information on technical topics.",
+      "- Attention to Detail: High level of attention to detail, crucial for maintaining the accuracy and consistency of technical information.",
+      "- Communication Skills: Effective communication skills for interacting with various technical professionals and understanding their perspectives.",
+      "- Document Design and Formatting: Knowledge of document design principles and proficiency in using document creation tools like Microsoft Word, Adobe Acrobat, and others.",
+      "- Project Management: Ability to manage multiple documentation projects simultaneously, often with tight deadlines.",
+      "- Adaptability: Flexibility to adapt to changing technology and project requirements."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Technical Lead",
+    "role": "The Technical Lead plays a crucial role in guiding the technical aspects of a project, ensuring that the development team delivers high-quality software that meets the project requirements. They bridge the gap between the technical team and other project stakeholders, translating technical details into a language that everyone can understand.",
+    "Responsibilities": [
+      "- Technical Direction and Strategy: Setting the technical direction for the team, including technology choices, architecture decisions, and overall technical strategy.",
+      "- Code Review and Quality Assurance: Overseeing code quality and architecture, performing code reviews, and ensuring that the team adheres to best practices in software development.",
+      "- Team Leadership and Guidance: Leading the development team, providing guidance and mentorship to developers, and ensuring effective team collaboration and communication.",
+      "- Project Management Support: Assisting in project planning and management, including estimating timelines, allocating resources, and setting milestones.",
+      "- Problem Solving and Technical Challenges: Tackling technical challenges and troubleshooting complex issues in the development process.",
+      "- Stakeholder Communication: Communicating technical concepts and project statuses to non-technical stakeholders, ensuring clarity and alignment.",
+      "- Innovation and Research: Keeping up-to-date with emerging technologies and industry trends, and exploring innovative solutions that could enhance project outcomes.",
+      "- Risk Management: Identifying technical risks in the project and developing strategies to mitigate them."
+    ],
+    "Skills": [
+      "- Technical Expertise: Strong expertise in relevant programming languages, frameworks, and technologies.",
+      "- Leadership and Team Management: Ability to lead and manage a team of developers, fostering a collaborative and productive environment.",
+      "- Analytical and Problem-Solving Skills: Proficiency in solving complex technical problems and making sound decisions.",
+      "- Communication Skills: Strong communication skills to effectively liaise between the development team and other stakeholders.",
+      "- Project Management: Understanding of project management principles and practices, including Agile methodologies.",
+      "- Attention to Detail: Focused attention to detail, especially in code quality and adherence to technical standards.",
+      "- Adaptability: Flexibility to adapt to changing technologies and project requirements."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "System Architect",
+    "role": "To accomplish their main functions of bringing together the pieces — or architecture — of a system while ensuring that current and future performance and scalability are achievable, System Architects perform a wide range of tasks. that can be sumerize as designing and organizing complex systems, such as software applications, networks, or hardware devices.",
+    "Responsibilities": [
+      "- Strategy & Planning: System architects are responsible for designing and implementing short and long-term strategic goals for managing and maintaining systems and software. In addition, they must make sure that all planned and in-place system architectures are aligned with the specific firm's goals. They provide their expertise and architectural assistance to other IT personnel including software teams, System Analysts and Engineers. They conduct research on new technologies in the field of systems development and create and develop plans for investing in such systems that will increase cost effectiveness and flexibility.",
+      "- Acquisition & Deployment: In this area of responsibility, System Architects design, create and monitor the implementation of end-to-end integrated systems. They also review new and existing system designs and make recommendations for improving or altering the systems. Negotiating and administering vendor and consultant contracts is also key in this area.",
+      "- Operational Management System Architects consult with department heads and end-users to further infrastructure development. They develop and execute test plans to check technical performance of infrastructure and report findings. Based on findings, they make recommendations for improvement. They also develop policies for standardizing systems and manage many of the aspects of IT staffing.",
+      "- Integrity of Systems: The System Architect is tasked with a balanced and focused development of the system and its maintenance no matter if requirements change. For example, if a reduction in cost is required, the System Architect must not sacrifice the system's performance or reliability."
+    ],
+    "Skills": [
+      "- Extensive experience in the development and implementation of computer systems and networks as a System Architect.",
+      "- Solid understanding of Object-Oriented Programming, coding for large scale applications and design and development of application service layers.",
+      "- Proven experience developing strategic system architecture plans.",
+      "- Extensive experience in system and network creation and development.",
+      "- Solid understanding of information processing fundamentals and best practices.",
+      "- Above-average analytical, conceptual and troubleshooting abilities.",
+      "- Excellent written and verbal communication skills.",
+      "- Experience conducting technology, trends, standards and products research.",
+      "- Solid track record in prioritizing and executing tasks when under extreme pressure.",
+      "- Experience providing guidance and leadership to novice systems engineers.",
+      "- Proven experience identifying, analyzing and resolving system problems.",
+      "- Familiarity and expertise in a variety of programs."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Software Engineer",
+    "role": "Software Engineers are key contributors to the technical development of software projects. They combine engineering principles with programming expertise to build software that is not only functional but also efficient, scalable, and sustainable. This role often requires a deeper understanding of software systems as a whole, beyond just writing code.",
+    "Responsibilities": [
+      "- Software Design and Development: Developing and implementing software solutions. This often involves more complex and scalable systems compared to typical development roles.",
+      "- Technical Problem-Solving: Solving complex technical problems that arise during the development process.",
+      "- System Architecture and Design: Contributing to the architecture and design of software systems, ensuring robustness, scalability, and maintainability.",
+      "- Code Quality and Standards: Ensuring code quality and adherence to software development standards and best practices.",
+      "- Cross-functional Collaboration: Collaborating with other engineers, developers, and team members across different departments to ensure cohesiveness and alignment of technical solutions with project goals.",
+      "- Technical Leadership: Providing technical leadership and mentorship to less experienced team members. May involve leading specific modules or components of a project",
+      "- Innovation and Research: Staying abreast of technological advancements and integrating innovative solutions into projects.",
+      "- Testing and Debugging: Conducting thorough testing and debugging of software to ensure functionality and efficiency."
+    ],
+    "Skills": [
+      "- Advanced Programming Skills: Proficiency in multiple programming languages and the ability to write efficient, clean, and well-documented code.",
+      "- System Design and Architecture: Strong understanding of system design, architecture principles, and patterns.",
+      "- Analytical and Critical Thinking: Ability to analyze requirements and technical challenges, and develop effective solutions.",
+      "- Attention to Detail: High level of attention to detail, especially in the design and testing phases.",
+      "- Teamwork and Communication: Effective communication skills for collaborating with other team members and stakeholders, and the ability to work well in a team.",
+      "- Project Management: Some knowledge of project management practices and the ability to manage parts of a project independently.",
+      "- Innovative Mindset: Continual learning mindset with an interest in staying updated with the latest technology trends and exploring new ideas.",
+      "- Quality Assurance: Understanding of quality assurance practices and the ability to implement testing strategies effectively."
 
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Software Developer",
+    "role": "A Developer is central to the creation and maintenance of software applications. They bring technical expertise to translate project requirements into functional software, ensuring that the application works efficiently and meets the needs of users and stakeholders. Developers often specialize in specific areas, such as front-end, back-end, mobile app development, or database management, depending on their skills and the project's requirements.",
+    "Responsibilities": [
+      "- Writing and Testing Code: Developing and implementing code for software applications. This includes writing, analyzing, testing, and debugging code.",
+      "- Design Implementation: Translating design and development plans into functional software.",
+      "- Maintenance and Updates: Maintaining, updating, and upgrading existing software to improve efficiency, performance, and user experience.",
+      "- Problem-Solving and Debugging: Identifying and fixing issues within the software, often involving problem-solving and critical thinking to address bugs and improve functionality.",
+      "- Technical Documentation: Creating and updating technical documentation for software applications, which is essential for future maintenance and upgrades.",
+      "- Collaboration and Communication: Working closely with other team members, including UX/UI designers, project managers, and other developers, to ensure cohesiveness and effective implementation of project objectives.",
+      "- Version Control: Using version control systems to manage changes to the software project, ensuring that changes are tracked and managed efficiently.",
+      "- Continuous Learning and Adaptation: Keeping up-to-date with the latest programming languages and software development techniques."
+    ],
+    "Skills": [
+      "- Programming Languages: Proficiency in relevant programming languages such as Java, Python, C++, JavaScript, etc.",
+      "- Technical Knowledge: Understanding of software development methodologies, frameworks, and tools.",
+      "- Problem-Solving Abilities: Strong analytical skills and the ability to solve complex software development issues.",
+      "- Attention to Detail: Focused attention to detail to ensure the accuracy and efficiency of code.",
+      "- Teamwork and Communication: Ability to work effectively in a team and communicate technical concepts to non-technical team members.",
+      "- Time Management: Managing time efficiently to meet project deadlines and manage multiple tasks simultaneously.",
+      "- Adaptability: Flexibility to adapt to new technologies, programming languages, and project requirements.",
+      "- Creativity and Innovation: Creativity in approaching development challenges and implementing effective solutions."
+
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Software Architect",
+    "role": "The Architect in IT and software projects plays a critical role in shaping the technical direction and ensuring that the technology strategy aligns with the business goals and is sustainable for future growth and changes. They provide a high-level, holistic vision and serve as a key decision-maker in technical matters.",
+    "Responsibilities": [
+      "- Architectural Design and Planning: Developing the overall architecture of a system, including defining the system's structure, components, interfaces, and data flow.",
+      "- Technology Evaluation and Selection: Researching and selecting appropriate technologies, platforms, and frameworks for the project.",
+      "- Technical Vision and Strategy: Setting the technical vision and strategy for projects, ensuring alignment with business objectives and long-term viability.",
+      "- Standards and Best Practices: Establishing and enforcing coding standards and best practices for software development.",
+      "- Technical Documentation: Creating detailed technical documentation for system architecture and design.",
+      "- Performance and Scalability: Ensuring the architecture is designed for high performance, scalability, and reliability.",
+      "- Risk Identification and Mitigation: Identifying potential technical risks and developing strategies to mitigate them.",
+      "- Stakeholder Collaboration: Collaborating with project managers, technical leads, and business analysts to ensure a cohesive and effective development strategy.",
+      "- Mentoring and Guidance: Providing technical guidance and mentorship to development teams and other architects."
+    ],
+    "Skills": [
+      "- Deep Technical Knowledge: Extensive knowledge of software development processes, architectural styles, and system design principles.",
+      "- Analytical and Problem-Solving Skills: Strong ability to analyze complex requirements and problems, and to devise effective architectural solutions.",
+      "- Communication and Leadership Skills: Excellent communication skills to articulate the architectural vision, conceptualize and experiment with alternative architectural approaches, validate the architecture against requirements and assumptions, and to advocate for the chosen approach.",
+      "- Project Management Acumen: Understanding of project management principles and the ability to work within the constraints of a project",
+      "- Adaptability and Continuous Learning: Keeping up-to-date with the latest technology trends and being adaptable to the evolving IT landscape.",
+      "- Attention to Detail: Focus on detail and accuracy, particularly in technical specifications and documentation.",
+      "- Team Collaboration: Ability to work collaboratively with various stakeholders, including non-technical members, to ensure alignment of the architectural design with business needs."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Security Specialist (IT/Network Security Specialist)",
+    "role": "An IT/Network Security Specialist plays a crucial role in protecting an organization's information systems and networks from various cyber threats. They are responsible for ensuring the confidentiality, integrity, and availability of data, which is increasingly important in today's digital and interconnected business environment.",
+    "Responsibilities": [
+      "- Security Assessment and Planning: Conducting assessments of the organization’s security measures and planning appropriate security enhancements.",
+      "- Threat and Vulnerability Analysis: Identifying, analyzing, and mitigating threats and vulnerabilities in networks, systems, and software.",
+      "- Security Monitoring: Monitoring IT systems for security breaches and intrusions. Setting up and managing security tools like firewalls, antivirus software, and intrusion detection systems.",
+      "- Incident Response and Management: Responding to security incidents and breaches, conducting forensic analysis to understand the root cause, and implementing measures to prevent future incidents.",
+      "- Policy and Compliance Management: Developing and implementing security policies, procedures, and standards. Ensuring compliance with legal and regulatory requirements regarding information security and privacy.",
+      "- Employee Training and Awareness: Conducting training sessions and creating awareness among employees about cybersecurity best practices and organizational security policies.",
+      "- Security Architecture Design: Designing and architecting secure networks, systems, and application infrastructures.",
+      "- Risk Management: Regularly conducting risk assessments and recommending ways to minimize risks."
+    ],
+    "Skills": [
+      "- Technical Expertise: In-depth knowledge of security technologies and systems, including firewalls, intrusion detection systems, anti-virus software, and data encryption.",
+      "- Analytical Skills: Strong analytical skills to assess security systems and identify vulnerabilities.",
+      "- Problem-Solving Abilities: Ability to quickly and effectively respond to security incidents and vulnerabilities.",
+      "- Communication Skills: Good communication skills for explaining complex security issues to non-technical staff and for preparing clear security documentation and reports.",
+      "- Knowledge of Cybersecurity Trends: Keeping up-to-date with the latest cybersecurity threats, trends, and technologies.",
+      "- Regulatory Knowledge: Understanding of relevant legal and regulatory requirements related to information security.",
+      "- Attention to Detail: High level of attention to detail, particularly when monitoring security systems and responding to incidents.",
+      "- Teamwork and Collaboration: Ability to collaborate effectively with other IT professionals and teams within the organization."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Resource Manager",
+    "role": "A Resource Manager plays a crucial role in ensuring that an organization's resources are used effectively and efficiently. They are responsible for the strategic planning and management of resources to support the successful completion of projects and overall business operations. Their role is pivotal in balancing resource allocation, optimizing productivity, and maintaining a harmonious and efficient work environment.",
+    "Responsibilities": [
+      "- Resource Allocation and Planning: Assessing project requirements and ensuring the right allocation of resources (such as personnel, technology, and materials) to meet these requirements.",
+      "- Workload and Capacity Planning: Managing the workload of team members to ensure a balanced distribution of tasks while considering their skills and capacity.",
+      "- Talent Management: Identifying the need for specific talents or skills and participating in recruitment or contracting processes when necessary.",
+      "- Performance Monitoring: Monitoring the performance and utilization of resources to optimize productivity and efficiency.",
+      "- Budget Management: Overseeing the budget allocated for resources and ensuring cost-effective utilization.",
+      "- Collaboration with Project Managers: Working closely with project managers to understand project scopes, timelines, and resource needs.",
+      "- Conflict Resolution and Problem-Solving: Addressing and resolving conflicts related to resource allocation and ensuring issues are resolved swiftly.",
+      "- Forecasting Future Resource Needs: Anticipating future project demands and planning resource needs accordingly."
+    ],
+    "Skills": [
+      "- Organizational Skills: Excellent organizational and multitasking skills for managing multiple resources and projects simultaneously.",
+      "- Communication and Interpersonal Skills: Strong communication skills for effective coordination with various team members and departments.",
+      "- Analytical and Strategic Thinking: Ability to analyze resource data and make strategic decisions to improve resource allocation and efficiency.",
+      "- Problem-Solving Abilities: Skillful in resolving conflicts and finding solutions to resource-related challenges.",
+      "- Knowledge of Project Management: Understanding of project management principles and methodologies to align resource management with project objectives.",
+      "- Budgeting and Financial Skills: Competence in managing budgets and understanding the financial implications of resource decisions.",
+      "- Team Management: Ability to manage and motivate a diverse team, ensuring optimal performance and job satisfaction.",
+      "- Adaptability: Flexibility to adapt to changing project requirements and resource availability."
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Graphic Designer",
+    "role": "A Graphic Designer plays a crucial role in creating visual concepts that communicate ideas, inspire, inform, and captivate consumers. They develop the overall layout and production design for various applications such as advertisements, brochures, magazines, and corporate reports. Their work is integral to marketing, branding, and communicating messages effectively through visual means.",
+    "Responsibilities": [
+
+    ],
+    "Skills": [
+
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Graphic Designer",
+    "role": "A Graphic Designer plays a crucial role in creating visual concepts that communicate ideas, inspire, inform, and captivate consumers. They develop the overall layout and production design for various applications such as advertisements, brochures, magazines, and corporate reports. Their work is integral to marketing, branding, and communicating messages effectively through visual means.",
+    "Responsibilities": [
+
+    ],
+    "Skills": [
+
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Graphic Designer",
+    "role": "A Graphic Designer plays a crucial role in creating visual concepts that communicate ideas, inspire, inform, and captivate consumers. They develop the overall layout and production design for various applications such as advertisements, brochures, magazines, and corporate reports. Their work is integral to marketing, branding, and communicating messages effectively through visual means.",
+    "Responsibilities": [
+
+    ],
+    "Skills": [
+
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
+,
+  {
+    "job": "Graphic Designer",
+    "role": "A Graphic Designer plays a crucial role in creating visual concepts that communicate ideas, inspire, inform, and captivate consumers. They develop the overall layout and production design for various applications such as advertisements, brochures, magazines, and corporate reports. Their work is integral to marketing, branding, and communicating messages effectively through visual means.",
+    "Responsibilities": [
+
+    ],
+    "Skills": [
+
+    ],
+    "context": "Je suis",
+    "task": "Ta mission est ...",
+    "process": "Les etapes que tu vas suivre sont ...",
+    "factors": "Les points fondamentaux a prendre a compte ...",
+    "functionalities": "Tu vas tuiliser ...",
+    "resources": "Base toi sur  ...",
+    "expectations": "Ta reponse doit ..."
+  }
 ]
