@@ -78,3 +78,63 @@ Version::Version(const std::string& version) noexcept
         LOG4CXX_ERROR(logger,"Invalid Semver 2.0.0 version string");
     }
 }
+
+std::uint8_t Version::get_m_major() const
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    return this->m_major;
+}
+
+void Version::set_m_major(const std::uint8_t major)
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    this->m_major = major;
+}
+
+std::uint8_t Version::get_m_minor() const
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    return this->m_minor;
+}
+
+void Version::set_m_minor(const std::uint8_t minor)
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    this->m_minor = minor;
+}
+
+std::uint8_t Version::get_m_patch() const
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    return this->m_patch;
+}
+
+void Version::set_m_patch(const std::uint8_t patch)
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    this->m_patch = patch;
+}
+
+std::uint8_t Version::get_m_tweak() const
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    return this->m_tweak;
+}
+
+void Version::set_m_tweak(const std::uint8_t tweak)
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    this->m_tweak = tweak;
+}
+
+ReleaseLevel Version::get_m_release_type() const
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    return this->m_releaseType;
+}
+
+void Version::set_m_release_type(const ReleaseLevel release_type)
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    m_releaseType = release_type;
+}

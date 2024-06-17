@@ -32,3 +32,9 @@ void SubjectTest::TearDown()
         delete m_targetUnderTest;
     this->m_targetUnderTest = nullptr;
 }
+
+
+TEST_F(SubjectTest, Test_Not_Yet_Implemented)
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+}

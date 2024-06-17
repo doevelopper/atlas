@@ -43,6 +43,8 @@ add_library(${PROJECT_NAME}.test
         com/github/doevelopper/atlas/utdriver/TestEventListenerConfigure.hpp
         com/github/doevelopper/atlas/utdriver/CustomTestEnvironment.cpp
         com/github/doevelopper/atlas/utdriver/CustomTestEnvironment.hpp
+        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.cpp
+        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.hpp
 )
 
 target_include_directories(${PROJECT_NAME}.test
@@ -90,6 +92,12 @@ add_executable (
         com/github/doevelopper/atlas/events/pub/PublisherTest.hpp
         com/github/doevelopper/atlas/events/pub/SubscriberTest.cpp
         com/github/doevelopper/atlas/events/pub/SubscriberTest.hpp
+        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.cpp
+        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.hpp
+        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.cpp
+        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.hpp
+        com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.cpp
+        com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.hpp
 )
 
 target_link_libraries(

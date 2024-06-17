@@ -34,6 +34,7 @@ namespace com::github::doevelopper::atlas::launcher
             std::string arch;
             std::string build;
             std::string tag;
+            LOG4CXX_DECLARE_STATIC_LOGGER
         };
     public:
         Application() noexcept;
@@ -42,7 +43,7 @@ namespace com::github::doevelopper::atlas::launcher
     protected:
     private:
         std::unique_ptr<ApplicationPrivate> d_ptr;
-        Package package;
+        Package m_package;
         // std::shared_ptr<com::github::doevelopper::atlas::logging::CustomLogger> m_loggerService;
     };
 }

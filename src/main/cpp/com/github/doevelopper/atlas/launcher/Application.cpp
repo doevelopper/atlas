@@ -17,21 +17,24 @@ using namespace com::github::doevelopper::atlas::semver;
 log4cxx::LoggerPtr Application::logger =
     log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.launcher.Application"));
 
+log4cxx::LoggerPtr Application::Package::logger =
+    log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.launcher.Package.Application"));
+
 Application::Package::Package()
     // : root(""), name(""), version(), arch(""), build(""), tag("")
 {
-
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
 Application::Package::Package(const std::string& name, const Version& version)
     // : root(""), name(name), version(version), arch(""), build(""), tag("")
 {
-
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
 Application::Package::~Package()
 {
-
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
 // std::string Application::Package::pkgName() const
@@ -51,7 +54,7 @@ Application::Application(int argc, char ** argv) noexcept
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
     Q_D(Application);
-    // d_ptr->package.version = Version(1, 0, 0);
+    // d_ptr->m_package.version = Version(1, 0, 0);
 }
 
 Application::~Application() noexcept

@@ -92,7 +92,8 @@ Prompt example #1:
 
 
 
-Act like an expert developer in <name_of_the_input_programming_language> and <name_of_the_output_programming_language>. I will submit a few lines of <name_of_the_input_programming_language> in the chat, and you'll rewrite it in the <name_of_the_output_programming_language>.
+Act like an expert developer in <name_of_the_input_programming_language> and <name_of_the_output_programming_language>. 
+I will submit a few lines of <name_of_the_input_programming_language> in the chat, and you'll rewrite it in the <name_of_the_output_programming_language>.
 
 Make sure to use a temperature of <temperature_value>.
 
@@ -118,7 +119,8 @@ Prompt example #2:
 
 
 
-Act like an expert developer in <name_of_the_input_programming_language> and <name_of_the_output_programming_language>. I will submit a few lines of <name_of_the_input_programming_language> in the chat, and you'll rewrite it in the <name_of_the_output_programming_language>.
+Act like an expert developer in <name_of_the_input_programming_language> and <name_of_the_output_programming_language>. 
+I will submit a few lines of <name_of_the_input_programming_language> in the chat, and you'll rewrite it in the <name_of_the_output_programming_language>.
 
 Make sure to use a temperature of <temperature_value>.
 
@@ -146,21 +148,20 @@ Prompt:
 
 
 
-You'll act as a Product Owner for an app that provides international shipment services for factories and retailers. I will give you a description of several features, and you'll kindly format them in the User Story format indicated below.
+You'll act as a Product Owner for an app that provides international shipment services for factories and retailers. 
+I will give you a description of several features, and you'll kindly format them in the User Story format indicated below.
 
+    - Modify an order within the 12 hours (fixed) that follow the submission.
 
+    - Lockscreen notifications for every step of the shipment.
 
-- Modify an order within the 12 hours (fixed) that follow the submission.
+    - Summary of ongoing orders ranked by date, cost, country, and products.
 
-- Lockscreen notifications for every step of the shipment.
+    - A history log of past orders ranked by date, cost, country, and products.
 
-- Summary of ongoing orders ranked by date, cost, country, and products.
+    - Chatbot incon that opens a chat window inside the web page.
 
-- A history log of past orders ranked by date, cost, country, and products.
-
-- Chatbot incon that opens a chat window inside the web page.
-
-- "Call me" button.
+    - "Call me" button.
 
 
 

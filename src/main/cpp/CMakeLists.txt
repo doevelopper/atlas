@@ -115,6 +115,20 @@ add_library(
         com/github/doevelopper/atlas/events/pub/IBroker.hpp
         com/github/doevelopper/atlas/events/pub/IPublisher.hpp
         com/github/doevelopper/atlas/events/pub/ISubscriber.hpp
+        com/github/doevelopper/atlas/events/obs/ObserverRegistrar.cpp
+        com/github/doevelopper/atlas/events/obs/ObserverRegistrar.hpp
+        com/github/doevelopper/atlas/time/Alarm.cpp
+        com/github/doevelopper/atlas/time/Alarm.hpp
+        com/github/doevelopper/atlas/time/AlarmFactory.cpp
+        com/github/doevelopper/atlas/time/AlarmFactory.hpp
+        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutex.cpp
+        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutex.hpp
+        com/github/doevelopper/atlas/barriers/RecursiveReadLock.cpp
+        com/github/doevelopper/atlas/barriers/RecursiveReadLock.hpp
+        com/github/doevelopper/atlas/barriers/RecursiveWriteLock.cpp
+        com/github/doevelopper/atlas/barriers/RecursiveWriteLock.hpp
+        com/github/doevelopper/atlas/launcher/args/IOption.cpp
+        com/github/doevelopper/atlas/launcher/args/IOption.hpp
 )
 
 target_compile_features(${PROJECT_NAME}.main
