@@ -1,5 +1,5 @@
 
-#include <com/github/doevelopper/atlas/launcher/args//IOption.hpp>
+#include <com/github/doevelopper/atlas/launcher/args/IOption.hpp>
 
 using namespace com::github::doevelopper::atlas::launcher::args;
 
@@ -17,9 +17,9 @@ IOption::~IOption() noexcept
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
-template<typename Type>
-Type IOption::get(char const* name) const
-{
-    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-    return boost::any_cast<Type>(get(name));
-}
+// template<typename Type>
+// Type IOption::get(char const* name) const
+// {
+//     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+//     return boost::any_cast<Type>(get(name));
+// }

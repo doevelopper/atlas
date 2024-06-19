@@ -129,6 +129,20 @@ add_library(
         com/github/doevelopper/atlas/barriers/RecursiveWriteLock.hpp
         com/github/doevelopper/atlas/launcher/args/IOption.cpp
         com/github/doevelopper/atlas/launcher/args/IOption.hpp
+        com/github/doevelopper/atlas/launcher/args/AbstractOption.cpp
+        com/github/doevelopper/atlas/launcher/args/AbstractOption.hpp
+        com/github/doevelopper/atlas/launcher/args/ProgramOption.cpp
+        com/github/doevelopper/atlas/launcher/args/ProgramOption.hpp
+        com/github/doevelopper/atlas/launcher/args/IConfiguration.cpp
+        com/github/doevelopper/atlas/launcher/args/IConfiguration.hpp
+        com/github/doevelopper/atlas/launcher/args/AbstractConfiguration.cpp
+        com/github/doevelopper/atlas/launcher/args/AbstractConfiguration.hpp
+        com/github/doevelopper/atlas/launcher/args/DefaultConfiguration.cpp
+        com/github/doevelopper/atlas/launcher/args/DefaultConfiguration.hpp
+        com/github/doevelopper/atlas/barriers/Synchronised.cpp
+        com/github/doevelopper/atlas/barriers/Synchronised.hpp
+        com/github/doevelopper/atlas/time/PosixTimestamp.cpp
+        com/github/doevelopper/atlas/time/PosixTimestamp.hpp
 )
 
 target_compile_features(${PROJECT_NAME}.main

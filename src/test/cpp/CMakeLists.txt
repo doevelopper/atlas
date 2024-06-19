@@ -43,8 +43,6 @@ add_library(${PROJECT_NAME}.test
         com/github/doevelopper/atlas/utdriver/TestEventListenerConfigure.hpp
         com/github/doevelopper/atlas/utdriver/CustomTestEnvironment.cpp
         com/github/doevelopper/atlas/utdriver/CustomTestEnvironment.hpp
-        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.cpp
-        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.hpp
 )
 
 target_include_directories(${PROJECT_NAME}.test
@@ -88,6 +86,10 @@ add_executable (
 #        com/github/doevelopper/atlas/utils/TimeFixtureTest.hpp
 #        com/github/doevelopper/atlas/events/obs/SubjectTest.cpp
 #        com/github/doevelopper/atlas/events/obs/SubjectTest.hpp
+        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.cpp
+        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.hpp
+        com/github/doevelopper/atlas/barriers/SynchronisedTest.cpp
+        com/github/doevelopper/atlas/barriers/SynchronisedTest.hpp
         com/github/doevelopper/atlas/events/pub/PublisherTest.cpp
         com/github/doevelopper/atlas/events/pub/PublisherTest.hpp
         com/github/doevelopper/atlas/events/pub/SubscriberTest.cpp
@@ -98,6 +100,18 @@ add_executable (
         com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.hpp
         com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.cpp
         com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.hpp
+        com/github/doevelopper/atlas/launcher/args/OptionMock.cpp
+        com/github/doevelopper/atlas/launcher/args/OptionMock.hpp
+        com/github/doevelopper/atlas/launcher/args/ProgramOptionTest.cpp
+        com/github/doevelopper/atlas/launcher/args/ProgramOptionTest.hpp
+        com/github/doevelopper/atlas/launcher/args/ConfigurationMock.cpp
+        com/github/doevelopper/atlas/launcher/args/ConfigurationMock.hpp
+        com/github/doevelopper/atlas/launcher/args/AbstractConfigurationMock.cpp
+        com/github/doevelopper/atlas/launcher/args/AbstractConfigurationMock.hpp
+        com/github/doevelopper/atlas/launcher/args/AbstractOptionMock.cpp
+        com/github/doevelopper/atlas/launcher/args/AbstractOptionMock.hpp
+        com/github/doevelopper/atlas/launcher/args/DefaultConfigurationTest.cpp
+        com/github/doevelopper/atlas/launcher/args/DefaultConfigurationTest.hpp
 )
 
 target_link_libraries(

@@ -36,8 +36,8 @@ namespace com::github::doevelopper::atlas::launcher::args
         virtual int get(char const* name, int default_) const = 0;
         virtual boost::any const& get(char const* name) const = 0;
 
-        template<typename Type>
-        Type get(char const* name) const;
+        // template<typename Type>
+        // Type get(char const* name) const;
     protected:
     private:
     };
