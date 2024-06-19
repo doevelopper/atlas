@@ -14,10 +14,10 @@
 #include <gmock/gmock.h>
 
 #include <com/github/doevelopper/atlas/launcher/args/IConfiguration.hpp>
-
+#include <com/github/doevelopper/atlas/launcher/args/AbstractOptionMock.hpp>
 namespace com::github::doevelopper::atlas::launcher::args::test
 {
-    class ConfigurationMock : IConfiguration
+    class ConfigurationMock : public IConfiguration
     {
         LOG4CXX_DECLARE_STATIC_LOGGER
     public:
@@ -27,6 +27,9 @@ namespace com::github::doevelopper::atlas::launcher::args::test
         ConfigurationMock& operator=(const ConfigurationMock&) = default;
         ConfigurationMock& operator=(ConfigurationMock&&) = default;
         ~ConfigurationMock() noexcept override ;
+
+        MOCK_CONST_METHOD0(options, std::shared_ptr<AbstractOption>());
+        // MOCK_CONST_METHOD0(options, std::shared_ptr<AbstractOptionMock>());
     protected:
     private:
     };

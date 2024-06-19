@@ -11,13 +11,15 @@
 #ifndef COM_GITHUB_DOEVELOPPER_ATLAS_LAUNCHER_ARGS_OPTIONMOCK_HPP
 #define COM_GITHUB_DOEVELOPPER_ATLAS_LAUNCHER_ARGS_OPTIONMOCK_HPP
 
-#include <gmock/gmock.h>
 
 #include <com/github/doevelopper/atlas/launcher/args/IOption.hpp>
 
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
+
 namespace com::github::doevelopper::atlas::launcher::args::test
 {
-    class OptionMock : public IOption
+    class OptionMock : public ::testing::NaggyMock<IOption>
     {
         LOG4CXX_DECLARE_STATIC_LOGGER
     public:
@@ -28,11 +30,11 @@ namespace com::github::doevelopper::atlas::launcher::args::test
         OptionMock& operator=(OptionMock&&) = default;
         ~OptionMock() noexcept override;
 
-        MOCK_CONST_METHOD(bool, is_set, (char const*));
-        MOCK_CONST_METHOD(bool, get, (char const*, bool));
-        MOCK_CONST_METHOD(std::string, get, (char const*, char const*));
-        MOCK_CONST_METHOD(int, get, (char const*, int));
-        MOCK_CONST_METHOD(boost::any const&, get, (char const*));
+        MOCK_METHOD(bool, is_set, (char const* name), (const, override));
+        MOCK_METHOD(bool, get, (char const* name, bool default_), (const, override));
+        MOCK_METHOD(std::string, get, (char const* name, char const* default_), (const, override));
+        MOCK_METHOD(int, get, (char const* name, int default_), (const, override));
+        MOCK_METHOD(boost::any const&, get, (char const* name), (const, override));
     protected:
     private:
     };

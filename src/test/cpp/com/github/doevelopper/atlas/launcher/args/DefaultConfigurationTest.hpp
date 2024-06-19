@@ -19,7 +19,7 @@ namespace com::github::doevelopper::atlas::launcher::args::test
 {
     class DefaultConfigurationTest : public ::testing::Test
     {
-        LOG4CXX_DECLARE_STATIC_LOGGER
+        LOG4CXX_DECLARE_STATIC_TEST_LOGGER
     public:
         DefaultConfigurationTest() noexcept;
         DefaultConfigurationTest(const DefaultConfigurationTest&) = default;

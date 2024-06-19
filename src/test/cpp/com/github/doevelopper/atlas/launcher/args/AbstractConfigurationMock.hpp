@@ -17,7 +17,7 @@
 
 namespace com::github::doevelopper::atlas::launcher::args::test
 {
-    class AbstractConfigurationMock : AbstractConfiguration
+    class AbstractConfigurationMock : public  ::testing::NaggyMock<AbstractConfiguration>
     {
         LOG4CXX_DECLARE_STATIC_LOGGER
     public:
@@ -27,6 +27,8 @@ namespace com::github::doevelopper::atlas::launcher::args::test
         AbstractConfigurationMock& operator=(const AbstractConfigurationMock&) = default;
         AbstractConfigurationMock& operator=(AbstractConfigurationMock&&) = default;
         ~AbstractConfigurationMock() noexcept override;
+
+        MOCK_METHOD(std::shared_ptr<AbstractOption>, options, (), (const, override));
     protected:
     private:
     };

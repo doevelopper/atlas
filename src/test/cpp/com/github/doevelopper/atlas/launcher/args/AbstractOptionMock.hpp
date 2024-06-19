@@ -16,7 +16,7 @@
 
 namespace com::github::doevelopper::atlas::launcher::args::test
 {
-    class AbstractOptionMock : AbstractOption
+    class AbstractOptionMock : public AbstractOption
     {
         LOG4CXX_DECLARE_STATIC_LOGGER
     public:
@@ -26,6 +26,13 @@ namespace com::github::doevelopper::atlas::launcher::args::test
         AbstractOptionMock& operator=(const AbstractOptionMock&) = default;
         AbstractOptionMock& operator=(AbstractOptionMock&&) = default;
         ~AbstractOptionMock() noexcept override;
+
+        // Use MOCK_METHOD to mock virtual functions from the base class IOption
+        MOCK_METHOD(bool, is_set, (const char* name), (const, override));
+        MOCK_METHOD(bool, get, (const char* name, bool default_), (const, override));
+        MOCK_METHOD(std::string, get, (const char* name, const char* default_), (const, override));
+        MOCK_METHOD(int, get, (const char* name, int default_), (const, override));
+        MOCK_METHOD(const boost::any&, get, (const char* name), (const, override));
     protected:
     private:
     };

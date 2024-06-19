@@ -30,7 +30,6 @@ namespace com::github::doevelopper::atlas::launcher::args
         virtual ~IOption() noexcept;
 
         virtual bool is_set(char const* name) const = 0;
-
         virtual bool get(char const* name, bool default_) const = 0;
         virtual std::string get(char const* name, char const* default_) const = 0;
         virtual int get(char const* name, int default_) const = 0;

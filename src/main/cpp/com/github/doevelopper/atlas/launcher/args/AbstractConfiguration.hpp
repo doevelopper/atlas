@@ -17,12 +17,6 @@ namespace com::github::doevelopper::atlas::launcher::args
 {
     class AbstractConfiguration : public IConfiguration
     {
-    public:
-
-        [[nodiscard]] std::shared_ptr<AbstractOption> options() const override;
-
-    private:
-
         LOG4CXX_DECLARE_STATIC_LOGGER
 
     public:
@@ -31,7 +25,7 @@ namespace com::github::doevelopper::atlas::launcher::args
         // AbstractConfiguration(AbstractConfiguration&&) = default;
         // AbstractConfiguration& operator=(const AbstractConfiguration&) = default;
         // AbstractConfiguration& operator=(AbstractConfiguration&&) = default;
-
+        [[nodiscard]] std::shared_ptr<AbstractOption> options() const override;
     protected:
         Q_DISABLE_COPY_MOVE(AbstractConfiguration)
         AbstractConfiguration() noexcept;

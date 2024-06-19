@@ -32,4 +32,7 @@ void DefaultConfigurationTest::TearDown()
     // this->m_targetUnderTest = nullptr;
 }
 
-
+TEST_F(DefaultConfigurationTest, Test_Not_Yet_Implemented)
+{
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+}

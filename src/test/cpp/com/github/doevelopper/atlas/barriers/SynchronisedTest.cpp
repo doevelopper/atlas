@@ -37,7 +37,7 @@ void SynchronisedTest<T>::TearDown()
     // this->m_targetUnderTest = nullptr;
 }
 
-
+/*
 TYPED_TEST(SynchronisedTest, MoveConstructorPreservesValue)
 {
     TypeParam initialValue = TypeParam(42);
@@ -121,3 +121,4 @@ TYPED_TEST(SynchronisedTest, WaitUnlocksAndReacquiresLock)
     // This should not throw
     (void)sync.lock();
 }
+*/

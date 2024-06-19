@@ -70,8 +70,8 @@ target_link_libraries(${PROJECT_NAME}.test
 
 add_executable (
     ${PROJECT_NAME}.test.bin
-#        com/github/doevelopper/atlas/semver/VersionTest.hpp
-#        com/github/doevelopper/atlas/semver/VersionTest.cpp
+        com/github/doevelopper/atlas/semver/VersionTest.hpp
+        com/github/doevelopper/atlas/semver/VersionTest.cpp
 #        com/github/doevelopper/atlas/storage/BasePtrTest.cpp
 #        com/github/doevelopper/atlas/storage/BasePtrTest.hpp
 #        com/github/doevelopper/atlas/storage/CircularBufferTest.cpp
@@ -86,20 +86,20 @@ add_executable (
 #        com/github/doevelopper/atlas/utils/TimeFixtureTest.hpp
 #        com/github/doevelopper/atlas/events/obs/SubjectTest.cpp
 #        com/github/doevelopper/atlas/events/obs/SubjectTest.hpp
-        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.cpp
-        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.hpp
-        com/github/doevelopper/atlas/barriers/SynchronisedTest.cpp
-        com/github/doevelopper/atlas/barriers/SynchronisedTest.hpp
-        com/github/doevelopper/atlas/events/pub/PublisherTest.cpp
-        com/github/doevelopper/atlas/events/pub/PublisherTest.hpp
-        com/github/doevelopper/atlas/events/pub/SubscriberTest.cpp
-        com/github/doevelopper/atlas/events/pub/SubscriberTest.hpp
-        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.cpp
-        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.hpp
-        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.cpp
-        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.hpp
-        com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.cpp
-        com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.hpp
+#        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.cpp
+#        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.hpp
+#        com/github/doevelopper/atlas/barriers/SynchronisedTest.cpp
+#        com/github/doevelopper/atlas/barriers/SynchronisedTest.hpp
+#        com/github/doevelopper/atlas/events/pub/PublisherTest.cpp
+#        com/github/doevelopper/atlas/events/pub/PublisherTest.hpp
+#        com/github/doevelopper/atlas/events/pub/SubscriberTest.cpp
+#        com/github/doevelopper/atlas/events/pub/SubscriberTest.hpp
+#        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.cpp
+#        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.hpp
+#        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.cpp
+#        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.hpp
+#        com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.cpp
+#        com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.hpp
         com/github/doevelopper/atlas/launcher/args/OptionMock.cpp
         com/github/doevelopper/atlas/launcher/args/OptionMock.hpp
         com/github/doevelopper/atlas/launcher/args/ProgramOptionTest.cpp

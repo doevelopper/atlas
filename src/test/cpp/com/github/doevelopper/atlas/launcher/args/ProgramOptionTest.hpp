@@ -19,7 +19,7 @@ namespace com::github::doevelopper::atlas::launcher::args::test
 {
     class ProgramOptionTest : public ::testing::Test
     {
-        LOG4CXX_DECLARE_STATIC_LOGGER
+        LOG4CXX_DECLARE_STATIC_TEST_LOGGER
     public:
         ProgramOptionTest() noexcept;
         ProgramOptionTest(const ProgramOptionTest&) = default;

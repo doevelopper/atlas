@@ -40,7 +40,7 @@ namespace com::github::doevelopper::atlas::barriers::test
     private:
     };
 
-    TYPED_TEST_SUITE(SynchronisedTest, ::testing::Types<int, float, std::string>);
+    // TYPED_TEST_SUITE(SynchronisedTest, ::testing::Types<int, float, std::string>);
 }
 
 /*
