@@ -22,7 +22,7 @@ RecursiveWriteLockTest::~RecursiveWriteLockTest() noexcept
 void RecursiveWriteLockTest::SetUp()
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-    m_targetUnderTest = new RecursiveWriteLock();
+    //m_targetUnderTest = new RecursiveWriteLock();
 }
 
 void RecursiveWriteLockTest::TearDown()

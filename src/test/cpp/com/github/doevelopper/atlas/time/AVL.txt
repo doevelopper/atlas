@@ -1,0 +1,772 @@
+#pragma once
+
+#include <array>
+#include <cstddef>
+#include <cstdint>
+#include <tuple>
+#include <type_traits>
+#include <utility>
+#include <cassert>
+
+#ifndef CAVL_ASSERT
+#if defined(CAVL_NO_ASSERT) && CAVL_NO_ASSERT
+#define CAVL_ASSERT(x) (void)0
+#else
+#include <cassert>
+#define CAVL_ASSERT(x) assert(x)
+#endif
+#endif
+
+namespace cavl {
+
+template <typename Derived>
+class Tree;
+
+template <typename Derived>
+class Node {
+public:
+    using TreeType = Tree<Derived>;
+    using DerivedType = Derived;
+
+    Node(const Node&) = delete;
+    Node& operator=(const Node&) = delete;
+
+    Node(Node&& other) noexcept { moveFrom(other); }
+    Node& operator=(Node&& other) noexcept {
+        if (isLinked()) {
+            remove();
+        }
+        moveFrom(other);
+        return *this;
+    }
+
+protected:
+    Node() = default;
+    ~Node() = default;
+
+    bool isLinked() const noexcept { return up != nullptr; }
+    bool isRoot() const noexcept { return isLinked() && !up->isLinked(); }
+    Derived* getParentNode() noexcept { return isRoot() ? nullptr : down(up); }
+    const Derived* getParentNode() const noexcept { return isRoot() ? nullptr : down(up); }
+    Derived* getChildNode(bool right) noexcept { return down(lr[right]); }
+    const Derived* getChildNode(bool right) const noexcept { return down(lr[right]); }
+    int8_t getBalanceFactor() const noexcept { return bf; }
+    Derived* getNextInOrderNode(bool reverse = false) noexcept { return getNextInOrderNodeImpl<Derived>(this, reverse); }
+    const Derived* getNextInOrderNode(bool reverse = false) const noexcept { return getNextInOrderNodeImpl<const Derived>(this, reverse); }
+
+    template <typename Predicate>
+    static Derived* search(Node* root, const Predicate& predicate) noexcept {
+        return searchImpl<Derived>(root, predicate);
+    }
+
+    template <typename Predicate>
+    static const Derived* search(const Node* root, const Predicate& predicate) noexcept {
+        return searchImpl<const Derived>(root, predicate);
+    }
+
+    template <typename Predicate, typename Factory>
+    static std::tuple<Derived*, bool> search(Node& origin, const Predicate& predicate, const Factory& factory);
+
+    void remove() const noexcept { removeImpl(this); }
+    void remove() noexcept {
+        removeImpl(this);
+        unlink();
+    }
+
+    static Derived* min(Node* root) noexcept { return extremum(root, false); }
+    static Derived* max(Node* root) noexcept { return extremum(root, true); }
+    static const Derived* min(const Node* root) noexcept { return extremum(root, false); }
+    static const Derived* max(const Node* root) noexcept { return extremum(root, true); }
+
+    template <typename Visitor, typename Result = std::invoke_result_t<Visitor, Derived&>>
+    static std::enable_if_t<!std::is_void_v<Result>, Result>
+    traverseInOrder(Derived* root, const Visitor& visitor, bool reverse = false) {
+        return traverseInOrderImpl<Result, Node>(root, visitor, reverse);
+    }
+
+    template <typename Visitor>
+    static std::enable_if_t<std::is_void_v<std::invoke_result_t<Visitor, Derived&>>>
+    traverseInOrder(Derived* root, const Visitor& visitor, bool reverse = false) {
+        traverseInOrderImpl<Node>(root, visitor, reverse);
+    }
+
+    template <typename Visitor, typename Result = std::invoke_result_t<Visitor, const Derived&>>
+    static std::enable_if_t<!std::is_void_v<Result>, Result>
+    traverseInOrder(const Derived* root, const Visitor& visitor, bool reverse = false) {
+        return traverseInOrderImpl<Result, const Node>(root, visitor, reverse);
+    }
+
+    template <typename Visitor>
+    static std::enable_if_t<std::is_void_v<std::invoke_result_t<Visitor, const Derived&>>>
+    traverseInOrder(const Derived* root, const Visitor& visitor, bool reverse = false) {
+        traverseInOrderImpl<const Node>(root, visitor, reverse);
+    }
+
+    template <typename Visitor>
+    static void traversePostOrder(Derived* root, const Visitor& visitor, bool reverse = false) {
+        traversePostOrderImpl<Node>(root, visitor, reverse);
+    }
+
+    template <typename Visitor>
+    static void traversePostOrder(const Derived* root, const Visitor& visitor, bool reverse = false) {
+        traversePostOrderImpl<const Node>(root, visitor, reverse);
+    }
+
+private:
+    void moveFrom(Node& other) noexcept;
+    void rotate(bool right) noexcept;
+    Node* adjustBalance(bool increment) noexcept;
+    Node* retraceOnGrowth() noexcept;
+
+    template <typename NodeT, typename DerivedT, typename Visitor>
+    static void traverseInOrderImpl(DerivedT* root, const Visitor& visitor, bool reverse);
+
+    template <typename Result, typename NodeT, typename DerivedT, typename Visitor>
+    static Result traverseInOrderImpl(DerivedT* root, const Visitor& visitor, bool reverse);
+
+    template <typename NodeT, typename DerivedT, typename Visitor>
+    static void traversePostOrderImpl(DerivedT* root, const Visitor& visitor, bool reverse);
+
+    static void removeImpl(const Node* node) noexcept;
+
+    template <typename DerivedT, typename NodeT, typename Predicate>
+    static DerivedT* searchImpl(NodeT* root, const Predicate& predicate) noexcept;
+
+    template <typename DerivedT, typename NodeT>
+    static DerivedT* getNextInOrderNodeImpl(NodeT* node, bool reverse) noexcept;
+
+    void unlink() noexcept;
+    static Derived* extremum(Node* root, bool maximum) noexcept;
+    static const Derived* extremum(const Node* root, bool maximum) noexcept;
+
+    static Derived* down(Node* x) noexcept { return static_cast<Derived*>(x); }
+    static const Derived* down(const Node* x) noexcept { return static_cast<const Derived*>(x); }
+
+    friend class Tree<Derived>;
+
+    Node* up = nullptr;
+    std::array<Node*, 2> lr{};
+    int8_t bf = 0;
+};
+
+template <typename Derived>
+template <typename Predicate, typename Factory>
+std::tuple<Derived*, bool> Node<Derived>::search(Node& origin, const Predicate& predicate, const Factory& factory) {
+    CAVL_ASSERT(!origin.isLinked());
+    Node*& root = origin.lr[0];
+
+    Node* out = nullptr;
+    Node* up = root;
+    Node* n = root;
+    bool r = false;
+    while (n != nullptr) {
+        CAVL_ASSERT(n->isLinked());
+
+        const auto cmp = predicate(*down(n));
+        if (cmp == 0) {
+            out = n;
+            break;
+        }
+        r = cmp > 0;
+        up = n;
+        n = n->lr[r];
+        CAVL_ASSERT((n == nullptr) || (n->up == up));
+    }
+    if (out != nullptr) {
+        return std::make_tuple(down(out), true);
+    }
+
+    out = factory();
+    CAVL_ASSERT(out != &origin);
+    if (out == nullptr) {
+        return std::make_tuple(nullptr, true);
+    }
+    out->unlink();
+
+    if (up != nullptr) {
+        CAVL_ASSERT(up->lr[r] == nullptr);
+        up->lr[r] = out;
+        out->up = up;
+    } else {
+        root = out;
+        out->up = &origin;
+    }
+    if (Node* const rt = out->retraceOnGrowth()) {
+        root = rt;
+    }
+    return std::make_tuple(down(out), false);
+}
+
+template <typename Derived>
+void Node<Derived>::removeImpl(const Node* node) noexcept {
+    CAVL_ASSERT(node != nullptr);
+    CAVL_ASSERT(node->isLinked());
+
+    Node* p = nullptr;
+    bool r = false;
+    if ((node->lr[0] != nullptr) && (node->lr[1] != nullptr)) {
+        Node* const re = min(node->lr[1]);
+        CAVL_ASSERT((re != nullptr) && (re->lr[0] == nullptr) && (re->up != nullptr));
+        re->bf = node->bf;
+        re->lr[0] = node->lr[0];
+        re->lr[0]->up = re;
+        if (re->up != node) {
+            p = re->getParentNode();
+            CAVL_ASSERT(p->lr[0] == re);
+            p->lr[0] = re->lr[1];
+            if (p->lr[0] != nullptr) {
+                p->lr[0]->up = p;
+            }
+            re->lr[1] = node->lr[1];
+            re->lr[1]->up = re;
+            r = false;
+        } else {
+            p = re;
+            r = true;
+        }
+        re->up = node->up;
+        re->up->lr[re->up->lr[1] == node] = re;
+    } else {
+        p = node->up;
+        const bool rr = node->lr[1] != nullptr;
+        if (node->lr[rr] != nullptr) {
+            node->lr[rr]->up = p;
+        }
+
+        r = p->lr[1] == node;
+        p->lr[r] = node->lr[rr];
+        if (p->lr[r] != nullptr) {
+            p->lr[r]->up = p;
+        }
+    }
+    if (p->isLinked()) {
+        for (;;) {
+            Node* const c = p->adjustBalance(!r);
+            CAVL_ASSERT(c != nullptr);
+            p = c->getParentNode();
+            if ((c->bf != 0) || (p == nullptr)) {
+                CAVL_ASSERT(c->up != nullptr);
+                if ((p == nullptr) && (c->up != nullptr)) {
+                    c->up->lr[0] = c;
+                }
+                break;
+            }
+            r = p->lr[1] == c;
+        }
+    }
+}
+
+template <typename Derived>
+Node<Derived>* Node<Derived>::adjustBalance(bool increment) noexcept {
+    CAVL_ASSERT(isLinked());
+    CAVL_ASSERT((bf >= -1) && (bf <= 1));
+    Node* out = this;
+    const int8_t new_bf = static_cast<int8_t>(bf + (increment ? 1 : -1));
+    if ((new_bf < -1) || (new_bf > 1)) {
+        const bool r = new_bf < 0;
+        const int8_t sign = r ? 1 : -1;
+        Node* const z = lr[!r];
+        CAVL_ASSERT(z != nullptr);
+        if ((z->bf * sign) <= 0) {
+            out = z;
+            rotate(r);
+            if (z->bf == 0) {
+                bf = static_cast<int8_t>(-sign);
+                z->bf = static_cast<int8_t>(sign);
+            } else {
+                bf = 0;
+                z->bf = 0;
+            }
+        } else {
+            Node* const y = z->lr[r];
+            CAVL_ASSERT(y != nullptr);
+            out = y;
+            z->rotate(!r);
+            rotate(r);
+            if ((y->bf * sign) < 0) {
+                bf = static_cast<int8_t>(sign);
+                y->bf = 0;
+                z->bf = 0;
+            } else if ((y->bf * sign) > 0) {
+                bf = 0;
+                y->bf = 0;
+                z->bf = static_cast<int8_t>(-sign);
+            } else {
+                bf = 0;
+                z->bf = 0;
+            }
+        }
+    } else {
+        bf = new_bf;
+    }
+    CAVL_ASSERT(out != nullptr);
+    return out;
+}
+
+template <typename Derived>
+Node<Derived>* Node<Derived>::retraceOnGrowth() noexcept {
+    CAVL_ASSERT(bf == 0);
+    Node* c = this;
+    Node* p = this->getParentNode();
+    while (p != nullptr) {
+        const bool r = p->lr[1] == c;
+        CAVL_ASSERT(p->lr[r] == c);
+        c = p->adjustBalance(r);
+        p = c->getParentNode();
+        if (c->bf == 0) {
+            break;
+        }
+    }
+    CAVL_ASSERT(c != nullptr);
+    return (p == nullptr) ? c : nullptr;
+}
+
+template <typename Derived>
+template <typename NodeT, typename DerivedT, typename Visitor>
+void Node<Derived>::traverseInOrderImpl(DerivedT* root, const Visitor& visitor, bool reverse) {
+    NodeT* node = root;
+    NodeT* prev = nullptr;
+
+    while (node != nullptr) {
+        NodeT* next = node->getParentNode();
+
+        if (prev == next) {
+            if (auto* const left = node->lr[reverse]) {
+                next = left;
+            } else {
+                visitor(*down(node));
+
+                if (auto* const right = node->lr[!reverse]) {
+                    next = right;
+                }
+            }
+        } else if (prev == node->lr[reverse]) {
+            visitor(*down(node));
+
+            if (auto* const right = node->lr[!reverse]) {
+                next = right;
+            }
+        }
+
+        prev = std::exchange(node, next);
+    }
+}
+
+template <typename Derived>
+template <typename Result, typename NodeT, typename DerivedT, typename Visitor>
+Result Node<Derived>::traverseInOrderImpl(DerivedT* root, const Visitor& visitor, bool reverse) {
+    NodeT* node = root;
+    NodeT* prev = nullptr;
+
+    while (node != nullptr) {
+        NodeT* next = node->getParentNode();
+
+        if (prev == next) {
+            if (auto* const left = node->lr[reverse]) {
+                next = left;
+            } else {
+                if (auto t = visitor(*down(node))) {
+                    return t;
+                }
+
+                if (auto* const right = node->lr[!reverse]) {
+                    next = right;
+                }
+            }
+        } else if (prev == node->lr[reverse]) {
+            if (auto t = visitor(*down(node))) {
+                return t;
+            }
+
+            if (auto* const right = node->lr[!reverse]) {
+                next = right;
+            }
+        }
+
+        prev = std::exchange(node, next);
+    }
+    return Result{};
+}
+
+template <typename Derived>
+template <typename NodeT, typename DerivedT, typename Visitor>
+void Node<Derived>::traversePostOrderImpl(DerivedT* root, const Visitor& visitor, bool reverse) {
+    NodeT* node = root;
+    NodeT* prev = nullptr;
+
+    while (node != nullptr) {
+        NodeT* next = node->getParentNode();
+
+        if (prev == next) {
+            if (auto* const left = node->lr[reverse]) {
+                next = left;
+            } else if (auto* const right = node->lr[!reverse]) {
+                next = right;
+            } else {
+                visitor(*down(node));
+            }
+        } else if (prev == node->lr[reverse]) {
+            if (auto* const right = node->lr[!reverse]) {
+                next = right;
+            } else {
+                visitor(*down(node));
+            }
+        } else {
+            visitor(*down(node));
+        }
+
+        prev = std::exchange(node, next);
+    }
+}
+
+template <typename Derived>
+class Tree final {
+public:
+    using NodeType = Node<Derived>;
+    using DerivedType = Derived;
+
+    Tree() = default;
+    ~Tree() = default;
+
+    Tree(const Tree&) = delete;
+    Tree& operator=(const Tree&) = delete;
+
+    Tree(Tree&& other) noexcept : origin_node_{std::move(other.origin_node_)} {
+        CAVL_ASSERT(!traversal_in_progress_);
+        CAVL_ASSERT(!other.traversal_in_progress_);
+    }
+
+    Tree& operator=(Tree&& other) noexcept {
+        CAVL_ASSERT(!traversal_in_progress_);
+        CAVL_ASSERT(!other.traversal_in_progress_);
+
+        origin_node_ = std::move(other.origin_node_);
+        return *this;
+    }
+
+    template <typename Predicate>
+    Derived* search(const Predicate& predicate) noexcept {
+        return NodeType::template search<Derived>(getRootNode(), predicate);
+    }
+
+    template <typename Predicate>
+    const Derived* search(const Predicate& predicate) const noexcept {
+        return NodeType::template search<Derived>(getRootNode(), predicate);
+    }
+
+    template <typename Predicate, typename Factory>
+    std::tuple<Derived*, bool> search(const Predicate& predicate, const Factory& factory) {
+        CAVL_ASSERT(!traversal_in_progress_);
+        return NodeType::template search<Derived, Factory>(origin_node_, predicate, factory);
+    }
+
+    void remove(NodeType* node) noexcept {
+        CAVL_ASSERT(!traversal_in_progress_);
+        if (node != nullptr && node->isLinked()) {
+            node->remove();
+        }
+    }
+
+    Derived* min() noexcept { return NodeType::min(*this); }
+    Derived* max() noexcept { return NodeType::max(*this); }
+    const Derived* min() const noexcept { return NodeType::min(*this); }
+    const Derived* max() const noexcept { return NodeType::max(*this); }
+
+    template <typename Visitor>
+    auto traverseInOrder(const Visitor& visitor, bool reverse = false) {
+        const TraversalIndicatorUpdater upd(*this);
+        return NodeType::template traverseInOrder<Visitor>(*this, visitor, reverse);
+    }
+
+    template <typename Visitor>
+    auto traverseInOrder(const Visitor& visitor, bool reverse = false) const {
+        const TraversalIndicatorUpdater upd(*this);
+        return NodeType::template traverseInOrder<Visitor>(*this, visitor, reverse);
+    }
+
+    template <typename Visitor>
+    void traversePostOrder(const Visitor& visitor, bool reverse = false) {
+        const TraversalIndicatorUpdater upd(*this);
+        NodeType::template traversePostOrder<Visitor>(*this, visitor, reverse);
+    }
+
+    template <typename Visitor>
+    void traversePostOrder(const Visitor& visitor, bool reverse = false) const {
+        const TraversalIndicatorUpdater upd(*this);
+        NodeType::template traversePostOrder<Visitor>(*this, visitor, reverse);
+    }
+
+    operator Derived*() noexcept { return getRootNode(); }
+    operator const Derived*() const noexcept { return getRootNode(); }
+
+    auto operator[](std::size_t index) -> Derived* {
+        std::size_t i = index;
+        return traverseInOrder([&i](auto& x) { return (i-- == 0) ? &x : nullptr; });
+    }
+
+    auto operator[](std::size_t index) const -> const Derived* {
+        std::size_t i = index;
+        return traverseInOrder([&i](const auto& x) { return (i-- == 0) ? &x : nullptr; });
+    }
+
+    auto size() const noexcept {
+        auto i = 0UL;
+        traverseInOrder([&i](auto& /*unused*/) { ++i; });
+        return i;
+    }
+
+    auto empty() const noexcept { return getRootNode() == nullptr; }
+
+private:
+    static_assert(!std::is_polymorphic_v<NodeType>);
+    static_assert(std::is_same_v<Tree<Derived>, typename NodeType::TreeType>);
+
+    class TraversalIndicatorUpdater final {
+    public:
+        explicit TraversalIndicatorUpdater(const Tree& sup) noexcept : that(sup) { that.traversal_in_progress_ = true; }
+        ~TraversalIndicatorUpdater() noexcept { that.traversal_in_progress_ = false; }
+
+        TraversalIndicatorUpdater(const TraversalIndicatorUpdater&) = delete;
+        TraversalIndicatorUpdater(TraversalIndicatorUpdater&&) = delete;
+        TraversalIndicatorUpdater& operator=(const TraversalIndicatorUpdater&) = delete;
+        TraversalIndicatorUpdater& operator=(TraversalIndicatorUpdater&&) = delete;
+
+    private:
+        const Tree& that;
+    };
+
+    Derived* getRootNode() noexcept { return origin_node_.getChildNode(false); }
+    const Derived* getRootNode() const noexcept { return origin_node_.getChildNode(false); }
+
+    Node<Derived> origin_node_{};
+    mutable volatile bool traversal_in_progress_ = false;
+};
+
+}  // namespace cavl
+
+
+#pragma once
+
+#include <cavl.hpp>
+#include <cassert>
+#include <chrono>
+#include <concepts>
+#include <optional>
+#include <utility>
+#include <variant>
+
+namespace olga_scheduler {
+
+template <typename TimePoint>
+class Event;
+
+template <typename TimePoint>
+struct Arg final {
+    Event<TimePoint>& event;
+    TimePoint deadline;
+    TimePoint approx_now;
+};
+
+template <typename Fun, typename TimePoint>
+concept Callback = std::invocable<Fun, const Arg<TimePoint>&>;
+
+template <typename TimePoint>
+class Event : private cavl::Node<Event<TimePoint>> {
+    friend class cavl::Node<Event<TimePoint>>;
+    friend class cavl::Tree<Event<TimePoint>>;
+
+public:
+    Event(const Event&) = delete;
+    Event& operator=(const Event&) = delete;
+    Event& operator=(Event&& other) noexcept = delete;
+
+    void cancel() noexcept {
+        if (deadline_ != TimePoint::min()) {
+            remove();
+            deadline_ = TimePoint::min();
+        }
+    }
+
+    [[nodiscard]] TimePoint getDeadline() const noexcept { return deadline_; }
+
+    static constexpr std::array<std::uint8_t, 16> _get_type_id_() noexcept {
+        return {0xB6, 0x87, 0x48, 0xA6, 0x7A, 0xDB, 0x4D, 0xF1, 0xB3, 0x1D, 0xA9, 0x8D, 0x50, 0xA7, 0x82, 0x47};
+    }
+
+protected:
+    using Tree = cavl::Tree<Event>;
+    using cavl::Node<Event>::remove;
+
+    Event() = default;
+
+    virtual ~Event() {
+        cancel();
+        assert(deadline_ == TimePoint::min());
+        assert(!this->getChildNode(false) && !this->getChildNode(true) && !this->getParentNode());
+    }
+
+    Event(Event&& other) noexcept :
+        cavl::Node<Event>{std::move(static_cast<cavl::Node<Event>&>(other))},
+        deadline_{std::exchange(other.deadline_, TimePoint::min())} {}
+
+    void schedule(const TimePoint dead, Tree& tree) noexcept {
+        cancel();
+        deadline_ = dead;
+        const auto ptr_existing = tree.search(
+            [dead](const Event& other) {
+                return (dead >= other.deadline_) ? 1 : -1;
+            },
+            [this] { return this; });
+        assert(std::get<0>(ptr_existing) == this);
+        assert(!std::get<1>(ptr_existing));
+        (void) ptr_existing;
+    }
+
+    virtual void execute(const Arg<TimePoint>& args, Tree& tree) = 0;
+
+private:
+    TimePoint deadline_ = TimePoint::min();
+};
+
+template <typename Clock>
+struct SpinResult final {
+    typename Clock::time_point next_deadline;
+    typename Clock::duration worst_lateness;
+    typename Clock::time_point approx_now;
+};
+
+template <typename Clock>
+class EventLoop final {
+public:
+    using time_point = typename Clock::time_point;
+    using duration = typename Clock::duration;
+
+private:
+    class EventProxy : public Event<time_point> {
+    public:
+        using Event<time_point>::execute;
+        using Event<time_point>::_get_type_id_;
+    };
+
+public:
+    EventLoop() = default;
+
+    EventLoop(const EventLoop&) = delete;
+    EventLoop(EventLoop&&) noexcept = delete;
+    EventLoop& operator=(const EventLoop&) = delete;
+    EventLoop& operator=(EventLoop&&) noexcept = delete;
+
+    ~EventLoop() {
+        assert(isEmpty());
+    }
+
+    template <Callback<time_point> Fun>
+    [[nodiscard]] auto repeat(const duration period, Fun&& handler) {
+        class Impl final : public EventProxy {
+        public:
+            Impl(EventLoop& owner, const duration per, Fun&& fun) : period_{per}, handler_{std::move(fun)} {
+                this->schedule(Clock::now() + period_, owner.tree_);
+            }
+
+            using EventProxy::_get_type_id_;
+
+        private:
+            void execute(const Arg<time_point>& args, Tree& tree) override {
+                this->schedule(args.deadline + period_, tree);
+                handler_(args);
+            }
+
+            const duration period_;
+            const Fun handler_;
+        };
+        assert(period > duration::zero());
+        return Impl{*this, period, std::forward<Fun>(handler)};
+    }
+
+    template <Callback<time_point> Fun>
+    [[nodiscard]] auto poll(const duration min_period, Fun&& handler) {
+        class Impl final : public EventProxy {
+        public:
+            Impl(EventLoop& owner, const duration per, Fun&& fun) : min_period_{per}, handler_{std::move(fun)} {
+                this->schedule(Clock::now() + min_period_, owner.tree_);
+            }
+
+            using EventProxy::_get_type_id_;
+
+        private:
+            void execute(const Arg<time_point>& args, Tree& tree) override {
+                this->schedule(args.approx_now + min_period_, tree);
+                handler_(args);
+            }
+
+            const duration min_period_;
+            const Fun handler_;
+        };
+        assert(min_period > duration::zero());
+        return Impl{*this, min_period, std::forward<Fun>(handler)};
+    }
+
+    template <Callback<time_point> Fun>
+    [[nodiscard]] auto defer(const time_point deadline, Fun&& handler) {
+        class Impl final : public EventProxy {
+        public:
+            Impl(EventLoop& owner, const time_point deadline, Fun&& fun) : handler_{std::move(fun)} {
+                this->schedule(deadline, owner.tree_);
+            }
+
+            using EventProxy::_get_type_id_;
+
+        private:
+            void execute(const Arg<time_point>& args, Tree&) override {
+                this->cancel();
+                handler_(args);
+            }
+
+            const Fun handler_;
+        };
+        return Impl{*this, deadline, std::forward<Fun>(handler)};
+    }
+
+    template <typename ExecutionMonitor = std::monostate>
+    [[nodiscard]] SpinResult<Clock> spin() {
+        SpinResult<Clock> result{.next_deadline = time_point::max(),
+                                 .worst_lateness = duration::zero(),
+                                 .approx_now = time_point::min()};
+        if (tree_.empty()) {
+            result.approx_now = Clock::now();
+            return result;
+        }
+
+        while (auto* const evt = static_cast<EventProxy*>(tree_.min())) {
+            const auto deadline = evt->getDeadline();
+            if (result.approx_now < deadline) {
+                result.approx_now = Clock::now();
+                if (result.approx_now < deadline) {
+                    result.next_deadline = deadline;
+                    break;
+                }
+            }
+            {
+                ExecutionMonitor monitor{};
+                evt->execute({.event = *evt, .deadline = deadline, .approx_now = result.approx_now}, tree_);
+                (void) monitor;
+            }
+            result.next_deadline = time_point::max();
+            result.worst_lateness = std::max(result.worst_lateness, result.approx_now - deadline);
+        }
+
+        assert(result.approx_now > time_point::min());
+        assert(result.worst_lateness >= duration::zero());
+        return result;
+    }
+
+    [[nodiscard]] bool isEmpty() const noexcept { return tree_.empty(); }
+
+    const auto& getTree() const noexcept { return tree_; }
+
+private:
+    using Tree = cavl::Tree<Event<time_point>>;
+    Tree tree_;
+};
+
+}  // namespace olga_scheduler

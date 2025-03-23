@@ -287,6 +287,12 @@ inline auto qGetPtrHelper(Ptr & ptr) -> decltype(ptr.operator->())
     }                                                                                                                  \
     friend class Class##Private;
 
+// Macro to declare private access functions and friendship
+// #define Q_DECLARE_PRIVATE(Class)
+//     inline Class##Private* d_func() { return d_ptr; }
+//     inline const Class##Private* d_func() const { return d_ptr; }
+//     friend class Class##Private;
+
 // somme shared compilers configurations
 // Stringify
 #define STRINGIFY(a) #a

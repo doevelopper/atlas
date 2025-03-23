@@ -37,6 +37,18 @@ void CustomTestEnvironment::SetUp()
     // setenv("TERM", "xterm-256color", 0);
     setenv("LOG4CXX_CONFIGURATION_WATCH_SECONDS", "120", 0);
     setenv("LOG4CXX_CONFIGURATION", "/etc/configs/nightOwl.xml", 0);
+
+    std::string tmpdir;
+    // std::stringstream ss;
+    // ss << std::put_time(now_tm, "%Y-%m-%d %X");
+    // if (getenv("TEST_TMPDIR"))
+    // {
+    //     tmpdir = std::string(getenv("TEST_TMPDIR")) + "/unittest" + ss.str();;
+    // }
+    // else
+    // {
+    //     tmpdir = "/tmp/unittest";
+    // }
 }
 
 void CustomTestEnvironment::TearDown()

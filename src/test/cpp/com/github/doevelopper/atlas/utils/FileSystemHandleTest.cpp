@@ -7,7 +7,7 @@ using namespace com::github::doevelopper::atlas::utils;
 using namespace com::github::doevelopper::atlas::utils::test;
 
 log4cxx::LoggerPtr FileSystemHandleTest::logger =
-    log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.storage.test.FileSystemHandleTest"));
+    log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.utils.test.FileSystemHandleTest"));
 
 FileSystemHandleTest::FileSystemHandleTest()
     : m_targetUnderTest()

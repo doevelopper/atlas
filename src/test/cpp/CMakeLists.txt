@@ -43,6 +43,8 @@ add_library(${PROJECT_NAME}.test
         com/github/doevelopper/atlas/utdriver/TestEventListenerConfigure.hpp
         com/github/doevelopper/atlas/utdriver/CustomTestEnvironment.cpp
         com/github/doevelopper/atlas/utdriver/CustomTestEnvironment.hpp
+        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisTreeTest.cpp
+        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisTreeTest.hpp
 )
 
 target_include_directories(${PROJECT_NAME}.test
@@ -70,48 +72,65 @@ target_link_libraries(${PROJECT_NAME}.test
 
 add_executable (
     ${PROJECT_NAME}.test.bin
+#        com/github/doevelopper/atlas/actor/CoordinatorTest.cpp
+#        com/github/doevelopper/atlas/actor/CoordinatorTest.hpp
         com/github/doevelopper/atlas/semver/VersionTest.hpp
         com/github/doevelopper/atlas/semver/VersionTest.cpp
-#        com/github/doevelopper/atlas/storage/BasePtrTest.cpp
-#        com/github/doevelopper/atlas/storage/BasePtrTest.hpp
-#        com/github/doevelopper/atlas/storage/CircularBufferTest.cpp
-#        com/github/doevelopper/atlas/storage/CircularBufferTest.hpp
-#        com/github/doevelopper/atlas/utils/ShellHandleTest.cpp
-#        com/github/doevelopper/atlas/utils/ShellHandleTest.hpp
-#        com/github/doevelopper/atlas/utils/FileSystemHandleTest.cpp
-#        com/github/doevelopper/atlas/utils/FileSystemHandleTest.hpp
-#        com/github/doevelopper/atlas/utils/SingletonTest.cpp
-#        com/github/doevelopper/atlas/utils/SingletonTest.hpp
-#        com/github/doevelopper/atlas/utils/TimeFixtureTest.cpp
-#        com/github/doevelopper/atlas/utils/TimeFixtureTest.hpp
-#        com/github/doevelopper/atlas/events/obs/SubjectTest.cpp
-#        com/github/doevelopper/atlas/events/obs/SubjectTest.hpp
+##        com/github/doevelopper/atlas/storage/BasePtrTest.cpp
+##        com/github/doevelopper/atlas/storage/BasePtrTest.hpp
+##        com/github/doevelopper/atlas/storage/CircularBufferTest.cpp
+##        com/github/doevelopper/atlas/storage/CircularBufferTest.hpp
+##        com/github/doevelopper/atlas/utils/ShellHandleTest.cpp
+##        com/github/doevelopper/atlas/utils/ShellHandleTest.hpp
+##        com/github/doevelopper/atlas/utils/FileSystemHandleTest.cpp
+##        com/github/doevelopper/atlas/utils/FileSystemHandleTest.hpp
+##        com/github/doevelopper/atlas/utils/SingletonTest.cpp
+##        com/github/doevelopper/atlas/utils/SingletonTest.hpp
+##        com/github/doevelopper/atlas/utils/TimeFixtureTest.cpp
+##        com/github/doevelopper/atlas/utils/TimeFixtureTest.hpp
+##        com/github/doevelopper/atlas/events/obs/SubjectTest.cpp
+##        com/github/doevelopper/atlas/events/obs/SubjectTest.hpp
+##        com/github/doevelopper/atlas/events/pub/PublisherTest.cpp
+##        com/github/doevelopper/atlas/events/pub/PublisherTest.hpp
+##        com/github/doevelopper/atlas/events/pub/SubscriberTest.cpp
+##        com/github/doevelopper/atlas/events/pub/SubscriberTest.hpp
+##        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.cpp
+##        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.hpp
+#        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.cpp
+#        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.hpp
 #        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.cpp
 #        com/github/doevelopper/atlas/barriers/RecursiveWriteLockTest.hpp
 #        com/github/doevelopper/atlas/barriers/SynchronisedTest.cpp
 #        com/github/doevelopper/atlas/barriers/SynchronisedTest.hpp
-#        com/github/doevelopper/atlas/events/pub/PublisherTest.cpp
-#        com/github/doevelopper/atlas/events/pub/PublisherTest.hpp
-#        com/github/doevelopper/atlas/events/pub/SubscriberTest.cpp
-#        com/github/doevelopper/atlas/events/pub/SubscriberTest.hpp
-#        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.cpp
-#        com/github/doevelopper/atlas/events/obs/ObserverRegistrarMock.hpp
-#        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.cpp
-#        com/github/doevelopper/atlas/barriers/RecursiveReadWriteMutexTest.hpp
 #        com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.cpp
 #        com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.hpp
-        com/github/doevelopper/atlas/launcher/args/OptionMock.cpp
-        com/github/doevelopper/atlas/launcher/args/OptionMock.hpp
-        com/github/doevelopper/atlas/launcher/args/ProgramOptionTest.cpp
-        com/github/doevelopper/atlas/launcher/args/ProgramOptionTest.hpp
-        com/github/doevelopper/atlas/launcher/args/ConfigurationMock.cpp
-        com/github/doevelopper/atlas/launcher/args/ConfigurationMock.hpp
-        com/github/doevelopper/atlas/launcher/args/AbstractConfigurationMock.cpp
-        com/github/doevelopper/atlas/launcher/args/AbstractConfigurationMock.hpp
-        com/github/doevelopper/atlas/launcher/args/AbstractOptionMock.cpp
-        com/github/doevelopper/atlas/launcher/args/AbstractOptionMock.hpp
-        com/github/doevelopper/atlas/launcher/args/DefaultConfigurationTest.cpp
-        com/github/doevelopper/atlas/launcher/args/DefaultConfigurationTest.hpp
+#        com/github/doevelopper/atlas/barriers/RecursiveReadLockTest.hpp
+#        com/github/doevelopper/atlas/launcher/args/OptionMock.cpp
+#        com/github/doevelopper/atlas/launcher/args/OptionMock.hpp
+#        com/github/doevelopper/atlas/launcher/args/ProgramOptionTest.cpp
+#        com/github/doevelopper/atlas/launcher/args/ProgramOptionTest.hpp
+#        com/github/doevelopper/atlas/launcher/args/ConfigurationMock.cpp
+#        com/github/doevelopper/atlas/launcher/args/ConfigurationMock.hpp
+#        com/github/doevelopper/atlas/launcher/args/AbstractConfigurationMock.cpp
+#        com/github/doevelopper/atlas/launcher/args/AbstractConfigurationMock.hpp
+#        com/github/doevelopper/atlas/launcher/args/AbstractOptionMock.cpp
+#        com/github/doevelopper/atlas/launcher/args/AbstractOptionMock.hpp
+#        com/github/doevelopper/atlas/launcher/args/DefaultConfigurationTest.cpp
+#        com/github/doevelopper/atlas/launcher/args/DefaultConfigurationTest.hpp
+#        com/github/doevelopper/atlas/security/AlgorithmTest.cpp
+#        com/github/doevelopper/atlas/security/AlgorithmTest.hpp
+#        com/github/doevelopper/atlas/time/AlarmMock.cpp
+#        com/github/doevelopper/atlas/time/AlarmMock.hpp
+#        com/github/doevelopper/atlas/time/AlarmTest.cpp
+#        com/github/doevelopper/atlas/time/AlarmTest.hpp
+##        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisTest.cpp
+##        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisTest.hpp
+#        #        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisNodeTest.cpp
+##        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisNodeTest.hpp
+##        com/github/doevelopper/atlas/time/TimeslicingTest.cpp
+##        com/github/doevelopper/atlas/time/TimeslicingTest.hpp
+##        com/github/doevelopper/atlas/time/TimeSlicingEventTest.cpp
+##        com/github/doevelopper/atlas/time/TimeSlicingEventTest.hpp
 )
 
 target_link_libraries(

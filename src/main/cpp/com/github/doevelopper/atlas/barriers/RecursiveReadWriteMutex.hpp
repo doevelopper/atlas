@@ -28,10 +28,12 @@ namespace com::github::doevelopper::atlas::barriers
         LOG4CXX_DECLARE_STATIC_LOGGER
         struct ThreadLockCount
         {
-            ThreadLockCount() : id(), count(0) {}
-            ThreadLockCount(std::thread::id id, unsigned int count) : id(id), count(count) {}
+            ThreadLockCount() noexcept;
+            ThreadLockCount(std::thread::id id, unsigned int count);
+            ~ThreadLockCount() noexcept;
             std::thread::id id;
             unsigned int count;
+            LOG4CXX_DECLARE_STATIC_LOGGER
         };
     public:
         RecursiveReadWriteMutex() noexcept;
@@ -50,8 +52,8 @@ namespace com::github::doevelopper::atlas::barriers
     private:
         std::mutex m_mutex;
         std::condition_variable m_cv;
-         std::vector<ThreadLockCount> read_locking_threads;
-        ThreadLockCount write_locking_thread;
+        std::vector<ThreadLockCount> m_readLockingThreads;
+        ThreadLockCount m_writeLockingThread;
     };
 }
 

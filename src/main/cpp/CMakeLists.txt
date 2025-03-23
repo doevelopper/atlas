@@ -29,14 +29,16 @@ find_package(expat REQUIRED)
 find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(Boost QUIET
-        COMPONENTS
+    COMPONENTS
         context
-        filesystem
-        program_options
-        exception
         coroutine
-        PATHS
-            ${CMAKE_BINARY_DIR}/installs
+        DateTime
+        exception
+        filesystem
+        interprocess
+        program_options
+    PATHS
+        ${CMAKE_BINARY_DIR}/installs
 )
 
 if (Boost_FOUND)
@@ -79,18 +81,41 @@ find_package(log4cxx REQUIRED
 
 add_library(
     ${PROJECT_NAME}.main
-        com/github/doevelopper/atlas/launcher/Application.cpp
-        com/github/doevelopper/atlas/launcher/Application.hpp
-        com/github/doevelopper/atlas/logging/CustomLogger.cpp
-        com/github/doevelopper/atlas/logging/CustomLogger.hpp
         com/github/doevelopper/atlas/CompilerDetection.hpp
         com/github/doevelopper/atlas/API_Export.hpp
-        com/github/doevelopper/atlas/logging/CustomLoggerPrivate.cpp
-        com/github/doevelopper/atlas/logging/CustomLoggerPrivate.hpp
+
+        com/github/doevelopper/atlas/launcher/Application.cpp
+        com/github/doevelopper/atlas/launcher/Application.hpp
         com/github/doevelopper/atlas/launcher/ApplicationPrivate.cpp
         com/github/doevelopper/atlas/launcher/ApplicationPrivate.hpp
+        com/github/doevelopper/atlas/launcher/Package.cpp
+        com/github/doevelopper/atlas/launcher/Package.hpp
+
+        com/github/doevelopper/atlas/logging/CustomLogger.cpp
+        com/github/doevelopper/atlas/logging/CustomLogger.hpp
+        com/github/doevelopper/atlas/logging/CustomLoggerPrivate.cpp
+        com/github/doevelopper/atlas/logging/CustomLoggerPrivate.hpp
+        com/github/doevelopper/atlas/logging/DefaultInitializationStrategy.cpp
+        com/github/doevelopper/atlas/logging/DefaultInitializationStrategy.hpp
+        com/github/doevelopper/atlas/logging/EnvironmentBasedInitializationStrategy.cpp
+        com/github/doevelopper/atlas/logging/EnvironmentBasedInitializationStrategy.hpp
+        com/github/doevelopper/atlas/logging/ILoggingInitializationStrategy.cpp
+        com/github/doevelopper/atlas/logging/ILoggingInitializationStrategy.hpp
+        com/github/doevelopper/atlas/logging/LoggingInitializer.cpp
+        com/github/doevelopper/atlas/logging/LoggingInitializer.hpp
+        com/github/doevelopper/atlas/logging/LoggingInitializationFactory.cpp
+        com/github/doevelopper/atlas/logging/LoggingInitializationFactory.hpp
+        com/github/doevelopper/atlas/logging/ProgrammaticInitializationStrategy.cpp
+        com/github/doevelopper/atlas/logging/ProgrammaticInitializationStrategy.hpp
+        com/github/doevelopper/atlas/logging/PropertyFileBasedInitializationStrategy.cpp
+        com/github/doevelopper/atlas/logging/PropertyFileBasedInitializationStrategy.hpp
+        com/github/doevelopper/atlas/logging/XMLFileBasedInitializationStrategy.cpp
+        com/github/doevelopper/atlas/logging/XMLFileBasedInitializationStrategy.hpp
+
+        com/github/doevelopper/atlas/semver/GitRevision.hpp
         com/github/doevelopper/atlas/semver/Version.hpp
         com/github/doevelopper/atlas/semver/Version.cpp
+#[[
         com/github/doevelopper/atlas/storage/BasePtr.cpp
         com/github/doevelopper/atlas/storage/BasePtr.hpp
         com/github/doevelopper/atlas/storage/CircularBuffer.cpp
@@ -143,6 +168,39 @@ add_library(
         com/github/doevelopper/atlas/barriers/Synchronised.hpp
         com/github/doevelopper/atlas/time/PosixTimestamp.cpp
         com/github/doevelopper/atlas/time/PosixTimestamp.hpp
+        com/github/doevelopper/atlas/details/CallableType.cpp
+        com/github/doevelopper/atlas/details/CallableType.hpp
+        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisNode.cpp
+        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisNode.hpp
+        com/github/doevelopper/atlas/utils/NaturallyAligned.cpp
+        com/github/doevelopper/atlas/utils/NaturallyAligned.hpp
+        com/github/doevelopper/atlas/errmgr/ErrorCodeBase.cpp
+        com/github/doevelopper/atlas/errmgr/ErrorCodeBase.hpp
+        com/github/doevelopper/atlas/actor/Coordinator.cpp
+        com/github/doevelopper/atlas/actor/Coordinator.hpp
+        com/github/doevelopper/atlas/security/Algorithm.cpp
+        com/github/doevelopper/atlas/security/Algorithm.hpp
+        com/github/doevelopper/atlas/utils/AdelsonVelskyLandis.hpp
+        com/github/doevelopper/atlas/security/ConfigTool.cpp
+        com/github/doevelopper/atlas/security/ConfigTool.hpp
+        com/github/doevelopper/atlas/launcher/fsm/Events.hpp
+#        com/github/doevelopper/atlas/launcher/fsm/ApplicationStateMachine.cpp
+#        com/github/doevelopper/atlas/launcher/fsm/ApplicationStateMachine.hpp
+#        com/github/doevelopper/atlas/launcher/fsm/Idle.cpp
+#        com/github/doevelopper/atlas/launcher/fsm/Idle.hpp
+#        com/github/doevelopper/atlas/launcher/fsm/LoadingConfig.cpp
+#        com/github/doevelopper/atlas/launcher/fsm/LoadingConfig.hpp
+#        com/github/doevelopper/atlas/launcher/fsm/ShuttingDown.cpp
+#        com/github/doevelopper/atlas/launcher/fsm/ShuttingDown.hpp
+#        com/github/doevelopper/atlas/launcher/fsm/Error.cpp
+#        com/github/doevelopper/atlas/launcher/fsm/Error.hpp
+        #        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisTree.cpp
+#        com/github/doevelopper/atlas/utils/AdelsonVelskyLandisTree.hpp
+#        com/github/doevelopper/atlas/time/Timeslicing.cpp
+#        com/github/doevelopper/atlas/time/Timeslicing.hpp
+#        com/github/doevelopper/atlas/time/TimeSlicingEvent.cpp
+#        com/github/doevelopper/atlas/time/TimeSlicingEvent.hpp
+#]]
 )
 
 target_compile_features(${PROJECT_NAME}.main
@@ -158,6 +216,8 @@ target_compile_definitions(${PROJECT_NAME}.main
         "LOG_LEVEL=$<IF:$<BOOL:${LOG_LEVEL}>,true,false>"
         $<$<OR:$<CONFIG:Release>,$<CONFIG:Debug>>: -DRELEASE_LEVEL="SNAPSHOOT"> # SNAPSHOOT ,ALPHA , BETA , CANDIDATE , FINAL.
         $<$<CXX_COMPILER_ID:GNU>: NOMINMAX>
+#        -D_GNU_SOURCE
+#        -D_FILE_OFFSET_BITS=64
         # -D_GLIBCXX_SANITIZE_VECTOR
         #QNX POSIX XENOMAI PREEMPT_RT
         #        $<IF:QUANTUM_BOOST_USE_SEGMENTED_STACKS,-D__QUANTUM_BOOST_USE_SEGMENTED_STACKS,

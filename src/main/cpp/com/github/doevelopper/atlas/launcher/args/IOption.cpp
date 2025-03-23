@@ -6,7 +6,6 @@ using namespace com::github::doevelopper::atlas::launcher::args;
 log4cxx::LoggerPtr IOption::logger =
     log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.launcher.args.IOption"));
 
-
 IOption::IOption() noexcept
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);

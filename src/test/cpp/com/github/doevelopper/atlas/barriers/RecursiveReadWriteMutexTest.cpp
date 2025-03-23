@@ -22,7 +22,7 @@ RecursiveReadWriteMutexTest::~RecursiveReadWriteMutexTest() noexcept
 void RecursiveReadWriteMutexTest::SetUp()
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-    // m_targetUnderTest = new RecursiveReadWriteMutexT();
+    this->m_targetUnderTest = new RecursiveReadWriteMutex();
 }
 
 void RecursiveReadWriteMutexTest::TearDown()
@@ -33,7 +33,11 @@ void RecursiveReadWriteMutexTest::TearDown()
     this->m_targetUnderTest = nullptr;
 }
 
-TEST_F(RecursiveReadWriteMutexTest, Test_Not_Yet_Implemented)
+TEST_F(RecursiveReadWriteMutexTest, Test_constructions)
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+
+    // Check that a read lock can be acquired
+    //this->m_targetUnderTest->
+    //ASSERT_EQ(1U, mutex.read_locking_threads[0].count);
 }

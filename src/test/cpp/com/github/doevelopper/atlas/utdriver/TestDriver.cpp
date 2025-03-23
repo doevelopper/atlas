@@ -30,17 +30,20 @@ TestDriver::~TestDriver() noexcept
 
 bool TestDriver::setup(int argc, char *argv[])
 {
-        LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-        this->moduleUnderTest(argv);
-        ::testing::InitGoogleMock(&argc, argv);
-        ::testing::TestEventListeners &listeners = testing::UnitTest::GetInstance()->listeners();
-        auto default_printer = listeners.Release(listeners.default_result_printer());
-        delete listeners.Release(listeners.default_result_printer());
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    this->moduleUnderTest(argv);
+    ::testing::InitGoogleMock(&argc, argv);
+    ::testing::TestEventListeners &listeners = testing::UnitTest::GetInstance()->listeners();
+    auto default_printer = listeners.Release(listeners.default_result_printer());
+    delete listeners.Release(listeners.default_result_printer());
 
-        TestEventListenerConfigure::Delegate(default_printer).build();
-        listeners.Append(new TestEventListener);
+    TestEventListenerConfigure::Delegate(default_printer).build();
+    listeners.Append(new TestEventListener);
+
+
+    static ::testing::Environment* const unittest_config_env __attribute__((unused)) =
         ::testing::AddGlobalTestEnvironment(new CustomTestEnvironment);
-        return true;
+    return true;
 }
 
 int TestDriver::run(int argc, char *argv[])

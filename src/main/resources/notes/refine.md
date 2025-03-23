@@ -1,0 +1,25 @@
+- Real-Time Requirements : Soft real-time is  acceptable 
+- Communication Protocols : The launcher Should natively abstract behind a unified API, the support of multiple protocols (e.g., OpenDDS, gRPC,...)
+- Security : Encryption, Authentication, Access control may be required for inter-process communication (IPC)
+- Configuration Management : Configuration may be centralized (shared across processes) and decentralized (per-process)
+- Process Lifecycle : Launcher Should manage process startup/shutdown and handle IPC/event coordination
+- Error Propagation : Centralized logging, health checks...
+- Resource Constraints : No strict limits on memory/CPU usage for the launcher and its dependencies
+- Event System : Event system support pub-sub, Observers, additional patterns ... 
+- Interoperability : Launcher must work with non-C++ processes Python, Rust
+- Dependencies : Preferences for specific libraries prioritize Abseil over Boost
+- Each process should be aware of availability of others process, 
+- Each process should have the ability to bind to required ones
+- Boot proces of applications are:
+    - Phase 0 Level 0  :   Initilaization and run on selected core
+    - Phase 0 Level 1  :   Reads its configurations files to retrieves parameters
+    - Phase 0 Level 2  :   Check its license status and Check its security key
+    - Phase 0 Level 3  :   Parses its commands lines and performs required actions
+    - Phase 1 Level 0  :   Parses its erors and theirs severity
+    - Phase 1 Level 1  :   Parses its events it has to publish when required
+    - Phase 1 Level 2  :   Parses its events it has to subscribe to
+    - Phase 1 Level 3  :   Loads its plugins and check theirs license activation status    
+    - Phase 2 Level 0  :   Creates its IPC channel
+    - Phase 2 Level 1  :   Notify others proces that he is onlyne
+    - Phase 2 Level 2  :   Bind to required proces
+    - Phase 2 Level 3  :   Process cubscription to each others events and error

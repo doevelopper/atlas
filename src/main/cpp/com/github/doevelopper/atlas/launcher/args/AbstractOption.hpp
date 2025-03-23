@@ -2,12 +2,11 @@
  * @file
  * @version  v0.0.
  * @date     18/06/24 W 20:28
- * @brief    
+ * @brief
  *
  * SPDX-License-Identifier: BSD-3-Clause
  * Copyright (C) 2024 ACME Technology Corp. All rights reserved.
-********************************************************************/
-
+ ********************************************************************/
 
 #ifndef COM_GITHUB_DOEVELOPPER_ATLAS_LAUNCHER_ARGS_ABSTRACTOPTION_HPP
 #define COM_GITHUB_DOEVELOPPER_ATLAS_LAUNCHER_ARGS_ABSTRACTOPTION_HPP
@@ -21,11 +20,12 @@ namespace com::github::doevelopper::atlas::launcher::args
         LOG4CXX_DECLARE_STATIC_LOGGER
 
     public:
+
         AbstractOption() noexcept;
-        AbstractOption(const AbstractOption&) = default;
-        AbstractOption(AbstractOption&&) = default;
-        AbstractOption& operator=(const AbstractOption&) = default;
-        AbstractOption& operator=(AbstractOption&&) = default;
+        AbstractOption(const AbstractOption &)             = default;
+        AbstractOption(AbstractOption &&)                  = default;
+        AbstractOption & operator=(const AbstractOption &) = default;
+        AbstractOption & operator=(AbstractOption &&)      = default;
         ~AbstractOption() noexcept override;
 
         bool is_set(const char * name) const override;
@@ -34,13 +34,12 @@ namespace com::github::doevelopper::atlas::launcher::args
         int get(const char * name, int default_) const override;
         const boost::any & get(const char * name) const override;
 
-        template<typename Type>
-        Type get(char const* name) const;
+        template <typename Type>
+        Type get(char const * name) const;
 
     protected:
     private:
     };
 }
-
 
 #endif

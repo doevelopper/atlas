@@ -5,7 +5,6 @@ using namespace com::github::doevelopper::atlas::launcher::args;
 log4cxx::LoggerPtr AbstractOption::logger =
     log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.launcher.args.AbstractOption"));
 
-
 AbstractOption::AbstractOption() noexcept
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
@@ -41,8 +40,8 @@ const boost::any & AbstractOption::get(const char * name) const
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
-template<typename Type>
-Type AbstractOption::get(char const* name) const
+template <typename Type>
+Type AbstractOption::get(char const * name) const
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
     return boost::any_cast<Type>(this->get(name));

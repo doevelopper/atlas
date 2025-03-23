@@ -90,6 +90,43 @@ include(ExternalProject)
     )
 #endif()
 
+#if(NOT Cucumber-cpp_FOUND)
+#ExternalProject_Add(Cucumber-cpp
+#        PREFIX "vendor/cucumber/cucumber-cpp"
+#        DEPENDS Boost
+#        GIT_REPOSITORY https://github.com/cucumber/cucumber-cpp.git
+#        GIT_TAG master
+#        UPDATE_DISCONNECTED 1
+#        GIT_PROGRESS 1
+#        CONFIGURE_COMMAND ${CMAKE_COMMAND} -S ${CMAKE_CURRENT_BINARY_DIR}/libs/libcucumber-cpp-src/cucumber-cpp -B ${CMAKE_CURRENT_BINARY_DIR}/libs/libcucumber-cpp-cpp-build
+#        -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/installs -DBUILD_SHARED_LIBS=OFF -DEXPAT_BUILD_EXAMPLES=OFF -DEXPAT_BUILD_TESTS=OFF -DEXPAT_SHARED_LIBS=OFF -DCUKE_DISABLE_QT=on
+#        -DCMAKE_PREFIX_PATH=${CMAKE_BINARY_DIR}/installs
+#        BUILD_COMMAND
+#        COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config Release --target install
+#        INSTALL_COMMAND ""
+#        TEST_COMMAND ""
+#        UPDATE_COMMAND ""
+
+## ruby 2.6.3
+#version=2.6.3
+#cd /usr/local/src
+#wget https://cache.ruby-lang.org/pub/ruby/2.6/ruby-$version.tar.gz
+#tar zxvf ruby-$version.tar.gz
+#cd ruby-$version
+#./configure
+#make
+#make install
+#
+## ruby-gems
+#version=3.0.3
+#cd ..
+#wget https://rubygems.org/rubygems/rubygems-$version.tgz
+#tar zxvf rubygems-$version.tgz
+#cd rubygems-$version
+#/usr/local/bin/ruby setup.rb
+
+#)
+#endif()
 #find_package(absl QUIET
 #    PATHS
 #        ${CMAKE_BINARY_DIR}/installs
@@ -130,10 +167,10 @@ include(ExternalProject)
             -DCRC32C_USE_GLOG:BOOL=OFF
             -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
             -DCMAKE_BUILD_TYPE:STRING=Release
-            -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/installs
             -DCMAKE_PREFIX_PATH=${CMAKE_BINARY_DIR}/installs
         UPDATE_COMMAND ""
     )
+#            -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/installs
 #endif()
 
 #find_package(FMT QUIET
@@ -152,7 +189,7 @@ include(ExternalProject)
             "-DFMT_INSTALL:BOOL=ON"
             "-DFMT_DOC:BOOL=OFF"
             "-DFMT_TEST:BOOL=OFF"
-            "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/dependencies"
+            "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/installs"
         UPDATE_COMMAND ""
     )
 #endif()
