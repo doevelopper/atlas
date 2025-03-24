@@ -44,7 +44,7 @@ int main (
         auto mainLogger = log4cxx::Logger::getLogger("com.github.doevelopper.atlas.main");
         LOG4CXX_INFO(mainLogger,  __LOG4CXX_FUNC__ << " Start the application asynchronously...");
 
-        // std::future<void> runFuture = application->run();
+        std::future<void> runFuture = application->run();
 
         // // Check if the application is running
         // if (application->isRunning())
