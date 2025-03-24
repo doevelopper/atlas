@@ -12,8 +12,7 @@
 #define COM_GITHUB_DOEVELOPPER_ATLAS_UTDRIVER_TESTDRIVER_HPP
 
 #include <gtest/gtest.h>
-#include <com/github/doevelopper/atlas/logging/CustomLogger.hpp>
-
+#include <com/github/doevelopper/atlas/logging/LoggingInitializer.hpp>
 
 #define TEST_PV(testsuite, testname, ...)                                                                              \
     class testsuite##Parameterized : public testsuite,                                                                 \

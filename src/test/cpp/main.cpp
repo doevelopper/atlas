@@ -30,9 +30,9 @@ int main (
 {
     char loggersConfiguratorPath[]="TEMP=/opt/log4cxx.xml";
     putenv( loggersConfiguratorPath );
-    std::unique_ptr<CustomLogger> loggingService =std::make_unique<CustomLogger>();
+    // std::unique_ptr<CustomLogger> loggingService =std::make_unique<CustomLogger>();
     std::unique_ptr<TestDriver> applicationUnderTest = std::make_unique<TestDriver>();
-
+    auto testLogger = log4cxx::Logger::getLogger("com.github.doevelopper.atlas.test.bin");
     std::int8_t runStatus = 0;
 
     try
@@ -43,114 +43,106 @@ int main (
 
         if (runStatus != EXIT_SUCCESS)
         {
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "");
-            LOG4CXX_ERROR(
-                log4cxx::Logger::getRootLogger(),
-                "**************************************************************************");
-            LOG4CXX_ERROR(
-                log4cxx::Logger::getRootLogger(),
-                "========== . FAILURE . ========== . FAILURE . ========== . FAILURE . =====");
-            LOG4CXX_ERROR(
-                log4cxx::Logger::getRootLogger(),
-                "**************************************************************************");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "                         ▒▒▓▓██████████████▓▓░░");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "                   ░░████████████████████████████▒▒");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "                 ████████████████████████████████████▒▒");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "             ▒▒████████████████████████████████████████▓▓");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "           ▓▓██████████████████████████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "         ▓▓██████████████████████████████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "       ▒▒██████████████████████████████████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "       ██████████    ▓▓██████████████████████████░░  ▓▓████████▒▒");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "     ██████████        ▓▓██████████████████████        ██████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "   ░░██████████          ▓▓██████████████████          ██████████▓▓");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "   ██████████████          ▓▓██████████████          ░░████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "   ██████████████▓▓          ▓▓██████████            ██████████████▒▒");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ▒▒████████████████▓▓          ▓▓██████            ██████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ▓▓██████████████████▓▓          ▓▓██            ████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ██████████████████████▓▓                      ██████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ████████████████████████▓▓                  ████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ██████████████████████████▓▓            ░░██████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ████████████████████████████            ▓▓██████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ██████████████████████████                ▓▓████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ████████████████████████                    ▓▓██████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ██████████████████████            ▓▓          ▓▓████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ▓▓██████████████████            ████▓▓          ▓▓██████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), " ░░████████████████            ████████▓▓          ▓▓██████████████▓▓");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "   ██████████████            ████████████▓▓          ▓▓████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "   ▒▒██████████            ████████████████▓▓          ████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "     ██████████          ████████████████████▓▓        ██████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "     ▒▒████████▒▒      ████████████████████████▓▓    ░░████████▓▓");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "       ▓▓████████▓▓▓▓██████████████████████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "         ████████████████████████████████████████████████████░░");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "           ████████████████████████████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "             ████████████████████████████████████████████░░");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "               ▒▒████████████████████████████████████▓▓");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "                   ▓▓██████████████████████████████");
-            LOG4CXX_ERROR(log4cxx::Logger::getRootLogger(), "                       ▒▒████████████████████▓▓");
+            LOG4CXX_ERROR(testLogger, "");
+            LOG4CXX_ERROR(testLogger, "**************************************************************************");
+            LOG4CXX_ERROR(testLogger, "========== . FAILURE . ========== . FAILURE . ========== . FAILURE . =====");
+            LOG4CXX_ERROR(testLogger, "**************************************************************************");
+            LOG4CXX_ERROR(testLogger, "");
+            LOG4CXX_ERROR(testLogger, "                         ▒▒▓▓██████████████▓▓░░");
+            LOG4CXX_ERROR(testLogger, "                   ░░████████████████████████████▒▒");
+            LOG4CXX_ERROR(testLogger, "                 ████████████████████████████████████▒▒");
+            LOG4CXX_ERROR(testLogger, "             ▒▒████████████████████████████████████████▓▓");
+            LOG4CXX_ERROR(testLogger, "           ▓▓██████████████████████████████████████████████");
+            LOG4CXX_ERROR(testLogger, "         ▓▓██████████████████████████████████████████████████");
+            LOG4CXX_ERROR(testLogger, "       ▒▒██████████████████████████████████████████████████████");
+            LOG4CXX_ERROR(testLogger, "       ██████████    ▓▓██████████████████████████░░  ▓▓████████▒▒");
+            LOG4CXX_ERROR(testLogger, "     ██████████        ▓▓██████████████████████        ██████████");
+            LOG4CXX_ERROR(testLogger, "   ░░██████████          ▓▓██████████████████          ██████████▓▓");
+            LOG4CXX_ERROR(testLogger, "   ██████████████          ▓▓██████████████          ░░████████████");
+            LOG4CXX_ERROR(testLogger, "   ██████████████▓▓          ▓▓██████████            ██████████████▒▒");
+            LOG4CXX_ERROR(testLogger, " ▒▒████████████████▓▓          ▓▓██████            ██████████████████");
+            LOG4CXX_ERROR(testLogger, " ▓▓██████████████████▓▓          ▓▓██            ████████████████████");
+            LOG4CXX_ERROR(testLogger, " ██████████████████████▓▓                      ██████████████████████");
+            LOG4CXX_ERROR(testLogger, " ████████████████████████▓▓                  ████████████████████████");
+            LOG4CXX_ERROR(testLogger, " ██████████████████████████▓▓            ░░██████████████████████████");
+            LOG4CXX_ERROR(testLogger, " ████████████████████████████            ▓▓██████████████████████████");
+            LOG4CXX_ERROR(testLogger, " ██████████████████████████                ▓▓████████████████████████");
+            LOG4CXX_ERROR(testLogger, " ████████████████████████                    ▓▓██████████████████████");
+            LOG4CXX_ERROR(testLogger, " ██████████████████████            ▓▓          ▓▓████████████████████");
+            LOG4CXX_ERROR(testLogger, " ▓▓██████████████████            ████▓▓          ▓▓██████████████████");
+            LOG4CXX_ERROR(testLogger, " ░░████████████████            ████████▓▓          ▓▓██████████████▓▓");
+            LOG4CXX_ERROR(testLogger, "   ██████████████            ████████████▓▓          ▓▓████████████");
+            LOG4CXX_ERROR(testLogger, "   ▒▒██████████            ████████████████▓▓          ████████████");
+            LOG4CXX_ERROR(testLogger, "     ██████████          ████████████████████▓▓        ██████████");
+            LOG4CXX_ERROR(testLogger, "     ▒▒████████▒▒      ████████████████████████▓▓    ░░████████▓▓");
+            LOG4CXX_ERROR(testLogger, "       ▓▓████████▓▓▓▓██████████████████████████████████████████");
+            LOG4CXX_ERROR(testLogger, "         ████████████████████████████████████████████████████░░");
+            LOG4CXX_ERROR(testLogger, "           ████████████████████████████████████████████████");
+            LOG4CXX_ERROR(testLogger, "             ████████████████████████████████████████████░░");
+            LOG4CXX_ERROR(testLogger, "               ▒▒████████████████████████████████████▓▓");
+            LOG4CXX_ERROR(testLogger, "                   ▓▓██████████████████████████████");
+            LOG4CXX_ERROR(testLogger, "                       ▒▒████████████████████▓▓");
 
-            LOG4CXX_ERROR(
-                log4cxx::Logger::getRootLogger(),
-                "**************************************************************************");
-            LOG4CXX_ERROR(
-                log4cxx::Logger::getRootLogger(),
-                "========== . FAILURE . ========== . FAILURE . ========== . FAILURE . =====");
-            LOG4CXX_ERROR(
-                log4cxx::Logger::getRootLogger(),
-                "**************************************************************************");
+            LOG4CXX_ERROR(testLogger, "**************************************************************************");
+            LOG4CXX_ERROR(testLogger, "========== . FAILURE . ========== . FAILURE . ========== . FAILURE . =====");
+            LOG4CXX_ERROR(testLogger, "**************************************************************************");
         }
         else
         {
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                                   ¶¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                        ¶¶¶¶    ¶¶¶¶11¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                        ¶¶1¶¶ ¶¶¶¶1111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                       ¶¶111¶¶¶1111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                   ¶¶¶ ¶1111¶¶1111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                   ¶11¶¶111¶¶111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                   ¶11¶1111¶111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                  ¶¶11¶111¶111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                  ¶11¶111¶¶111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                  ¶11¶111¶1111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                 ¶11¶111¶11111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                 ¶1¶111¶¶1111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "                ¶1¶¶111¶1111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "               ¶¶1¶111¶1111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "               ¶¶¶111¶11111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "              ¶¶¶11¶¶111111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "              ¶¶11¶¶111111¶¶¶1¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "             ¶11¶¶1111111¶111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "           ¶¶¶¶¶1111111¶¶11111111¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "          ¶¶¶1111111¶¶1111111111111¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "         ¶¶111111¶¶¶11111111111111111¶¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "         ¶111111¶¶1111111111111111111111¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "         ¶111111¶1111111111¶¶¶1111111111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "        ¶11111111111111111¶¶ ¶¶¶¶¶¶¶¶111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "       ¶¶111111111111111¶¶¶        ¶111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "       ¶11111111111¶¶¶¶¶¶          ¶111111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "      ¶¶11111111111¶¶             ¶¶11111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "      ¶111111111111¶              ¶¶11111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "     ¶¶111111111111¶                ¶¶¶¶¶¶¶¶¶¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "     ¶1111111111111¶                ¶¶¶111111¶¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "     ¶1111111111111¶¶             ¶¶¶111111¶¶¶11¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "    ¶¶1111111111111¶¶¶         ¶¶¶1111111¶¶11111¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "    ¶1111111111111111¶¶¶¶¶¶¶¶¶¶¶111111111¶1111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "    ¶111111111111111111¶¶¶¶11111111111111¶¶¶¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "   ¶111111111111111111111111111111111111111¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "  ¶111111111111111111111111111111111111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "¶¶11111111111111111111111111111111111111¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "111111111111111111111111111111111¶¶¶¶¶¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "111111111111111111111111111111¶¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "1111111111111111111111111111¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "111111111111111111111111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "1111111111111111111111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "111111111111111111111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "1111111111111111111111¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "111111111111111111¶¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "111111111¶¶¶¶¶¶¶¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "111111¶¶¶");
-            LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "¶¶¶¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "");
+            LOG4CXX_INFO(testLogger, "                                   ¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "                        ¶¶¶¶    ¶¶¶¶11¶");
+            LOG4CXX_INFO(testLogger, "                        ¶¶1¶¶ ¶¶¶¶1111¶");
+            LOG4CXX_INFO(testLogger, "                       ¶¶111¶¶¶1111111¶");
+            LOG4CXX_INFO(testLogger, "                   ¶¶¶ ¶1111¶¶1111111¶");
+            LOG4CXX_INFO(testLogger, "                   ¶11¶¶111¶¶111111¶¶");
+            LOG4CXX_INFO(testLogger, "                   ¶11¶1111¶111111¶¶");
+            LOG4CXX_INFO(testLogger, "                  ¶¶11¶111¶111111¶¶");
+            LOG4CXX_INFO(testLogger, "                  ¶11¶111¶¶111111¶");
+            LOG4CXX_INFO(testLogger, "                  ¶11¶111¶1111111¶");
+            LOG4CXX_INFO(testLogger, "                 ¶11¶111¶11111111¶");
+            LOG4CXX_INFO(testLogger, "                 ¶1¶111¶¶1111111¶¶");
+            LOG4CXX_INFO(testLogger, "                ¶1¶¶111¶1111111¶¶");
+            LOG4CXX_INFO(testLogger, "               ¶¶1¶111¶1111111¶¶");
+            LOG4CXX_INFO(testLogger, "               ¶¶¶111¶11111111¶");
+            LOG4CXX_INFO(testLogger, "              ¶¶¶11¶¶111111111¶");
+            LOG4CXX_INFO(testLogger, "              ¶¶11¶¶111111¶¶¶1¶¶");
+            LOG4CXX_INFO(testLogger, "             ¶11¶¶1111111¶111111¶¶");
+            LOG4CXX_INFO(testLogger, "           ¶¶¶¶¶1111111¶¶11111111¶¶¶");
+            LOG4CXX_INFO(testLogger, "          ¶¶¶1111111¶¶1111111111111¶¶¶");
+            LOG4CXX_INFO(testLogger, "         ¶¶111111¶¶¶11111111111111111¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "         ¶111111¶¶1111111111111111111111¶¶¶");
+            LOG4CXX_INFO(testLogger, "         ¶111111¶1111111111¶¶¶1111111111111¶");
+            LOG4CXX_INFO(testLogger, "        ¶11111111111111111¶¶ ¶¶¶¶¶¶¶¶111111¶");
+            LOG4CXX_INFO(testLogger, "       ¶¶111111111111111¶¶¶        ¶111111¶¶");
+            LOG4CXX_INFO(testLogger, "       ¶11111111111¶¶¶¶¶¶          ¶111111¶");
+            LOG4CXX_INFO(testLogger, "      ¶¶11111111111¶¶             ¶¶11111¶¶");
+            LOG4CXX_INFO(testLogger, "      ¶111111111111¶              ¶¶11111¶");
+            LOG4CXX_INFO(testLogger, "     ¶¶111111111111¶                ¶¶¶¶¶¶¶¶¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "     ¶1111111111111¶                ¶¶¶111111¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "     ¶1111111111111¶¶             ¶¶¶111111¶¶¶11¶");
+            LOG4CXX_INFO(testLogger, "    ¶¶1111111111111¶¶¶         ¶¶¶1111111¶¶11111¶");
+            LOG4CXX_INFO(testLogger, "    ¶1111111111111111¶¶¶¶¶¶¶¶¶¶¶111111111¶1111¶¶");
+            LOG4CXX_INFO(testLogger, "    ¶111111111111111111¶¶¶¶11111111111111¶¶¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "   ¶111111111111111111111111111111111111111¶¶¶");
+            LOG4CXX_INFO(testLogger, "  ¶111111111111111111111111111111111111111¶¶");
+            LOG4CXX_INFO(testLogger, "¶¶11111111111111111111111111111111111111¶¶¶");
+            LOG4CXX_INFO(testLogger, "111111111111111111111111111111111¶¶¶¶¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "111111111111111111111111111111¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "1111111111111111111111111111¶¶¶");
+            LOG4CXX_INFO(testLogger, "111111111111111111111111111¶¶");
+            LOG4CXX_INFO(testLogger, "1111111111111111111111111¶¶");
+            LOG4CXX_INFO(testLogger, "111111111111111111111111¶¶");
+            LOG4CXX_INFO(testLogger, "1111111111111111111111¶¶");
+            LOG4CXX_INFO(testLogger, "111111111111111111¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "111111111¶¶¶¶¶¶¶¶¶¶");
+            LOG4CXX_INFO(testLogger, "111111¶¶¶");
+            LOG4CXX_INFO(testLogger, "¶¶¶¶¶¶¶");
         }
+
+        LOG4CXX_INFO(testLogger, "------------------------------------------------------");
+        LOG4CXX_INFO(testLogger, "                    UNIT TEST END                   --");
+        LOG4CXX_INFO(testLogger, "------------------------------------------------------");
     }
     catch (const std::exception & e)
     {

@@ -10,17 +10,27 @@ ProgrammaticInitializationStrategy::ProgrammaticInitializationStrategy() noexcep
 
 ProgrammaticInitializationStrategy::~ProgrammaticInitializationStrategy() noexcept
 {
-
+    // if (log4cxx::LogManager::getLoggerRepository()->isConfigured())
+    // {
+    //     LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), __LOG4CXX_FUNC__);
+    // }
 }
 
 void ProgrammaticInitializationStrategy::initialize() const
 {
     try
     {
-        auto layout = std::make_shared<log4cxx::PatternLayout>("%d [%t] %-5p %c - %m%n");
+        // log4cxx::PatternLayoutPtr layout(new log4cxx::PatternLayout(LOG4CXX_STR("%d{yyyy-MM-dd HH:mm:ss.SSS} %Y [%-6p] %y - [%15.15t] - %-35c{1.} -- %Y %m%y%n")));
+        auto layout = std::make_shared<log4cxx::PatternLayout>(LOG4CXX_STR("%d{yyyy-MM-dd HH:mm:ss.SSS} %Y [%-6p] %y - [%15.15t] - %-35c{1.} -- %Y %m%y%n"));
+        // auto layout = std::make_shared<log4cxx::PatternLayout>("%d [%t] %-5p %c - %m%n");
         auto appender = std::make_shared<log4cxx::ConsoleAppender>(layout);
         log4cxx::BasicConfigurator::configure(appender);
-        LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "Log4CXX initialized programmatically.");
+
+        auto loggingLogger = log4cxx::Logger::getLogger("com.github.doevelopper.atlas.logging.ProgrammaticInitializationStrategy");
+
+        LOG4CXX_INFO(loggingLogger, " --------------START LOGGING---------------");
+        // LOG4CXX_INFO(loggingLogger,  __LOG4CXX_FUNC__ << " ----START LOGGING-----");
+        // LOG4CXX_INFO(log4cxx::Logger::getRootLogger(), "Log4CXX initialized programmatically.");
     }
     catch (const log4cxx::helpers::Exception& ex)
     {

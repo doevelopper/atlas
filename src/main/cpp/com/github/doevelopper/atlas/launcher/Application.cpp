@@ -75,22 +75,27 @@ log4cxx::LoggerPtr Application::logger =
 Application::Application() noexcept
     : d_ptr(std::make_unique<ApplicationPrivate>(this))
 {
-    LOG4CXX_DEBUG(logger, "Application created with default constructor");
-//     try {
-//         // Perform basic initialization
-//         d_ptr->initialize();
-//     } catch (const std::exception& e) {
-//         LOG4CXX_ERROR(logger, "Initialization failed: " << e.what());
-//         // We're in a noexcept constructor, so we can't throw
-//         // Just log the error and continue with a partially initialized state
-//     } catch (...) {
-//         LOG4CXX_ERROR(logger, "Initialization failed with unknown exception");
-//     }
+    // LOG4CXX_DEBUG(logger, "Application created with default constructor");
+    try
+    {
+        // Perform basic initialization
+        d_ptr->initialize();
+    }
+    catch (const std::exception& e)
+    {
+        // LOG4CXX_ERROR(logger, "Initialization failed: " << e.what());
+        // We're in a noexcept constructor, so we can't throw
+        // Just log the error and continue with a partially initialized state
+    }
+    catch (...)
+    {
+        // LOG4CXX_ERROR(logger, "Initialization failed with unknown exception");
+    }
 }
 
 Application::~Application() noexcept
 {
-     LOG4CXX_DEBUG(logger, "Application being destroyed");
+    //  LOG4CXX_DEBUG(logger, "Application being destroyed");
 //     try {
 //         // If the application is still running, shut it down
 //         if (isRunning()) {
@@ -103,28 +108,32 @@ Application::~Application() noexcept
 //     } catch (...) {
 //         LOG4CXX_ERROR(logger, "Unknown exception in destructor");
 //     }
-    LOG4CXX_DEBUG(logger, "Application destroyed");
+    // LOG4CXX_DEBUG(logger, "Application destroyed");
 }
 
 Application::Application([[maybe_unused]] int argc, [[maybe_unused]] char** argv) noexcept
     : d_ptr(std::make_unique<ApplicationPrivate>(this, argc, argv))
 {
-    LOG4CXX_DEBUG(logger, "Application created with arguments");
-    // Q_D(Application); // Qt macro to get d-pointer
-    // d->doPrivateWork(); // Access private implementation
-//     try {
-//         // Perform initialization with arguments
-//         d_ptr->initialize();
-//     } catch (const std::exception& e) {
-//         LOG4CXX_ERROR(logger, "Initialization failed: " << e.what());
-//         // We're in a noexcept constructor, so we can't throw
-//     } catch (...) {
-//         LOG4CXX_ERROR(logger, "Initialization failed with unknown exception");
+    // LOG4CXX_DEBUG(logger, "Application created with arguments");
+    // try
+    // {
+    //     // Perform initialization with arguments
+    //     // d_ptr->initialize();
+    // }
+    // catch (const std::exception& e)
+    // {
+    // //     LOG4CXX_ERROR(logger, "Initialization failed: " << e.what());
+    // //     // We're in a noexcept constructor, so we can't throw
+    // }
+    // catch (...)
+    // {
+    // //     LOG4CXX_ERROR(logger, "Initialization failed with unknown exception");
     // }
 }
 
 std::future<void> Application::run()
 {
+    LOG4CXX_INFO(logger,  __LOG4CXX_FUNC__);
 //     Q_D(const Application);
 //     LOG4CXX_INFO(logger, "Starting application");
 //     try {
@@ -141,6 +150,7 @@ std::future<void> Application::run()
 
 std::future<void> Application::shutdown(const std::string& reason)
 {
+    LOG4CXX_INFO(logger,  __LOG4CXX_FUNC__);
 //     LOG4CXX_INFO(logger, "Shutting down application: " << reason);
 //     try {
 //         return d_ptr->shutdown(reason);
@@ -156,16 +166,18 @@ std::future<void> Application::shutdown(const std::string& reason)
 
 Version Application::getVersion() const
 {
+    LOG4CXX_INFO(logger,  __LOG4CXX_FUNC__);
 //     // Implementation depends on your Version class
 //     // This is a placeholder
-//     return Version();
+     return Version();
 }
 //
 std::string Application::getName() const
 {
+    LOG4CXX_INFO(logger,  __LOG4CXX_FUNC__);
 //     // This would typically access a member of ApplicationPrivate
 //     // For demonstration, we return a placeholder
-//     return "ApplicationName";
+     return "ApplicationName";
 }
 
 // std::string Application::getDescription() const
@@ -177,6 +189,7 @@ std::string Application::getName() const
 //
 bool Application::isRunning() const
 {
+    LOG4CXX_INFO(logger,  __LOG4CXX_FUNC__);
 //     // This would check the state in ApplicationPrivate
 //     // For demonstration, we use a naive implementation
 //     // In a real implementation, you would access the state in ApplicationPrivate
@@ -187,62 +200,5 @@ bool Application::isRunning() const
 //         LOG4CXX_ERROR(logger, "Error checking if application is running: " << e.what());
 //         return false;
 //     }
+    return false;
 }
-
-// Application::Package Application::getPackage() const
-// {
-//     // Create and return a Package object
-//     // This would typically be populated with actual values from ApplicationPrivate
-//     return Package(getName(), getVersion());
-// }
-//
-// ApplicationPrivate* Application::d_func() const
-// {
-//     return d_ptr.get();
-// }
-
-// log4cxx::LoggerPtr Application::Package::logger =
-//     log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.launcher.Package.Application"));
-//
-// Application::Package::Package()
-//     // : root(""), name(""), version(), arch(""), build(""), tag("")
-// {
-//     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-// }
-//
-// Application::Package::Package(const std::string& name, const Version& version)
-//     // : root(""), name(name), version(version), arch(""), build(""), tag("")
-// {
-//     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-// }
-//
-// Application::Package::~Package()
-// {
-//     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-// }
-//
-// // std::string Application::Package::pkgName() const
-// // {
-// //     return name;
-// // }
-//
-// Application::Application() noexcept
-//     : d_ptr(std::make_unique<ApplicationPrivate>()) //: Application(0, nullptr) {}
-// {
-//     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-//     Q_D(Application);
-// }
-//
-// Application::Application(int argc, char ** argv) noexcept
-//     : d_ptr(std::make_unique<ApplicationPrivate>())
-// {
-//     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-//     Q_D(Application);
-//     // d_ptr->m_package.version = Version(1, 0, 0);
-// }
-//
-// Application::~Application() noexcept
-// {
-//     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
-//     Q_D ( Application );
-// }

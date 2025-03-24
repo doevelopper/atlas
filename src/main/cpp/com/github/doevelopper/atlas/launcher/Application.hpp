@@ -13,7 +13,7 @@
 
 #include <future>
 
-#include <com/github/doevelopper/atlas/logging/CustomLogger.hpp>
+#include <com/github/doevelopper/atlas/logging/LoggingInitializer.hpp>
 #include <com/github/doevelopper/atlas/semver/Version.hpp>
 // #include <com/github/doevelopper/atlas/launcher/args/IOption.hpp>
 #include <com/github/doevelopper/atlas/launcher/Package.hpp>

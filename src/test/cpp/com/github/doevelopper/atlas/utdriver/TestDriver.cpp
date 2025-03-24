@@ -1,4 +1,6 @@
 
+#include <com/github/doevelopper/atlas/logging/LoggingInitializer.hpp>
+#include <com/github/doevelopper/atlas/logging/ProgrammaticInitializationStrategy.hpp>
 
 #include <com/github/doevelopper/atlas/utdriver/TestDriver.hpp>
 #include <com/github/doevelopper/atlas/utdriver/TestEventListener.hpp>
@@ -15,7 +17,10 @@ log4cxx::LoggerPtr TestDriver::logger =
 
 TestDriver::TestDriver() noexcept
 {
-        LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
+    auto envStrategy = std::make_unique<com::github::doevelopper::atlas::logging::ProgrammaticInitializationStrategy>();
+    auto initializer = std::make_unique<com::github::doevelopper::atlas::logging::LoggingInitializer>(std::move(envStrategy));
+    initializer->initialize();
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
 TestDriver::TestDriver(std::string &suite, unsigned int iteration) noexcept

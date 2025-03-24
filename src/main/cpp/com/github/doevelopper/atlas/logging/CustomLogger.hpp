@@ -87,28 +87,6 @@ std::string logger {boost::typeindex::type_id<decltype(*this)>().pretty_name()};
 
 namespace com::github::doevelopper::atlas::logging
 {
-    enum class Level : std::uint32_t
-    {
-        /* user actions malfunctions ....*/
-        EMERGENCY    = (1 << 0),    /* system is unusable. A panic condition was reported to all processes. */
-        CRITICAL     = (1 << 1),
-        FATAL        = (1 << 2),     /* critical conditions */
-        ALERT        = (1 << 3),
-        ERROR        = (1 << 4),    /* action must be taken immediately. A condition that should be corrected immediately.  */
-        WARNING      = (1 << 5),    /* error conditions */
-        INFO         = (1 << 6),    /* warning conditions */
-        TRACE        = (1 << 7),    /* informational */
-        DEBUG        = (1 << 8),     /* debug-level messages. A message useful for debugging programs.  */
-        ADVISORY     = (1 << 9),
-      /* software malfunctions */
-        INHIBIT      = (1 << 10),   /* System should be restarted.  */
-        HINDENBUG    = (1 << 11),   /* bug with catastrophic behavior.*/
-        MANDELBUG    = (1 << 12),   /* Behavior appear chaotic or even non-deterministic.*/
-        BOHRBUG      = (1 << 13),    /*They do not change their behavior and are relatively easily detected.*/
-        HEISENBUG    = (1 << 14),    /* Disappear or alter its behavior when one attempts to study it.*/
-        SCHRODINBUG  = (1 << 15),   /*Bug that manifests itself in running software after a programmer notices that the code should never have worked in the first place.*/
-        HIGGS_BUGSON = (1 << 16)    /*bug that is predicted to exist based upon other observed conditions, but is difficult, if not impossible, to artificially reproduce in a development or test environment. */
-    };
 
     class CustomLoggerPrivate;
 

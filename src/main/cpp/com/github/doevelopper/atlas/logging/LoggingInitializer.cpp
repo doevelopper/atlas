@@ -23,7 +23,8 @@ LoggingInitializer::LoggingInitializer(std::unique_ptr<ILoggingInitializationStr
 
 void LoggingInitializer::initialize() const
 {
-    if (!this->m_strategy) {
+    if (!this->m_strategy)
+    {
         throw std::runtime_error("No initialization strategy provided.");
     }
     this->m_strategy->initialize();
