@@ -48,22 +48,22 @@ int main (
 
         // // Check if the application is running
         // if (application->isRunning())
-        // {
-        //     LOG4CXX_INFO(mainLogger, "Application is running successfully");
+        {
+            LOG4CXX_INFO(mainLogger, "Application is running successfully");
 
-        //     // Here you could implement wait logic or shutdown conditions
-        //     // For example:
-        //     // runFuture.wait();
+            // Here you could implement wait logic or shutdown conditions
+            // For example:
+            runFuture.wait();
 
-        //     // Or implement a controlled shutdown after some condition:
-        //     // std::future<void> shutdownFuture = application->shutdown("Normal termination");
-        //     // shutdownFuture.wait();
-        // }
+            // Or implement a controlled shutdown after some condition:
+            std::future<void> shutdownFuture = application->shutdown("Normal termination");
+            shutdownFuture.wait();
+        }
         // else
-        // {
-        //     LOG4CXX_ERROR(mainLogger, "Application failed to start");
-        //     runStatus = EXIT_FAILURE;
-        // }
+        {
+            LOG4CXX_ERROR(mainLogger, "Application failed to start");
+            runStatus = EXIT_FAILURE;
+        }
 
         runStatus = EXIT_SUCCESS;
     }

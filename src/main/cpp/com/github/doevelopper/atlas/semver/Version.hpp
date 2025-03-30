@@ -4,14 +4,11 @@
 
 #include <optional>
 
-#include <com/github/doevelopper/atlas/logging/CustomLogger.hpp>
+#include <com/github/doevelopper/atlas/logging/LoggingInitializer.hpp>
 #include <com/github/doevelopper/atlas/semver/GitRevision.hpp>
 
 namespace com::github::doevelopper::atlas::semver
 {
-    constexpr int LSL = -1;
-    constexpr int ESL = 0;
-    constexpr int USL = 1;
     /*!
      * @brief ReleaseLevel indicates the release level of this API
      *          This enum follows the release level convention used by python.
@@ -35,6 +32,9 @@ namespace com::github::doevelopper::atlas::semver
         SNAPSHOOT       = 0xD,      /**< API is not tested, work in progress. (part of custom range) */
         FINAL           = 0xF       /**< API is in final state, i.e. officially approved. (part of custom range) */
     };
+
+    // Forward declaration
+    class VersionConstraint;
 
     class Version
     {
@@ -150,6 +150,14 @@ namespace com::github::doevelopper::atlas::semver
 
         std::string toString() const;
         std::string fullVersionFromString() const;
+
+        /**
+         * @brief Check if this version is compatible with the given constraint
+         * @param constraint The version constraint to check against
+         * @return True if this version satisfies the constraint
+         */
+        bool isCompatibleWith(const VersionConstraint& constraint) const;
+
         /*!
          * @brief Compare this version with another version
          * @param other The other version to compare with

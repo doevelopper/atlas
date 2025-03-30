@@ -140,6 +140,7 @@ std::future<void> Application::run()
     {
         // Delegate to the private implementation
         LOG4CXX_DEBUG(logger,  __LOG4CXX_FUNC__ << " Delegate to the private implementation.");
+        // return std::async(std::launch::async, [this] { d_ptr->run(); });
         return d_ptr->run();
     }
     catch (const std::exception& e)
@@ -154,18 +155,22 @@ std::future<void> Application::run()
 
 std::future<void> Application::shutdown(const std::string& reason)
 {
-    LOG4CXX_DEBUG(logger,  __LOG4CXX_FUNC__);
-//     LOG4CXX_INFO(logger, "Shutting down application: " << reason);
-//     try {
-//         return d_ptr->shutdown(reason);
-//     } catch (const std::exception& e) {
-//         LOG4CXX_ERROR(logger, "Failed to shutdown application: " << e.what());
+    LOG4CXX_DEBUG(logger,  __LOG4CXX_FUNC__ << "  " << reason);
+
+     try
+     {
+            return d_ptr->shutdown(reason);
+        // return std::async(std::launch::async, [this, reason] { d_ptr->shutdown(reason); });
+     }
+    catch (const std::exception& e)
+    {
+         LOG4CXX_ERROR(logger, "Failed to shutdown application: " << e.what());
 //
 //         // Create a future with the exception
 //         std::promise<void> promise;
 //         promise.set_exception(std::current_exception());
 //         return promise.get_future();
-//     }
+     }
 }
 
 Version Application::getVersion() const

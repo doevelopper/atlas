@@ -12,6 +12,7 @@
 
 using namespace com::github::doevelopper::atlas::launcher;
 using namespace com::github::doevelopper::atlas::semver;
+using namespace com::github::doevelopper::atlas::launcher::args;
 
 log4cxx::LoggerPtr ApplicationPrivate::logger =
     log4cxx::Logger::getLogger(std::string("com.github.doevelopper.atlas.launcher.ApplicationPrivate"));
@@ -38,6 +39,10 @@ ApplicationPrivate::ApplicationPrivate(Application* q, int argc, char** argv) no
 {
     //processArguments(argc, argv);
     this->initializeLogging();
+
+    parser.parse(argc,argv);
+    positionalHandler = std::make_unique<PositionalOption>(parser.getPositionalArguments());
+    namedHandler = std::make_unique<NamedOption>(parser.getVariablesMap());
     LOG4CXX_DEBUG(logger, __LOG4CXX_FUNC__ << " Constructor with arguments called");
 }
 
@@ -133,15 +138,16 @@ bool ApplicationPrivate::initializeLogging()
 {
     // LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
     
-    try {
-    //     // First check for environment-based configuration
-    // auto envStrategy = std::make_unique<com::github::doevelopper::atlas::logging::EnvironmentBasedInitializationStrategy>("LOG4CXX_CONFIGURATION", true);
-    // auto initializer = std::make_unique<com::github::doevelopper::atlas::logging::LoggingInitializer>(std::move(envStrategy));
-    // initializer->initialize();
+    try
+    {
+        //     // First check for environment-based configuration
+        // auto envStrategy = std::make_unique<com::github::doevelopper::atlas::logging::EnvironmentBasedInitializationStrategy>("LOG4CXX_CONFIGURATION", true);
+        // auto initializer = std::make_unique<com::github::doevelopper::atlas::logging::LoggingInitializer>(std::move(envStrategy));
+        // initializer->initialize();
 
-    auto envStrategy = std::make_unique<com::github::doevelopper::atlas::logging::ProgrammaticInitializationStrategy>();
-    auto initializer = std::make_unique<com::github::doevelopper::atlas::logging::LoggingInitializer>(std::move(envStrategy));
-    initializer->initialize();
+        auto envStrategy = std::make_unique<com::github::doevelopper::atlas::logging::ProgrammaticInitializationStrategy>();
+        auto initializer = std::make_unique<com::github::doevelopper::atlas::logging::LoggingInitializer>(std::move(envStrategy));
+        initializer->initialize();
 
         
     //     LOG4CXX_INFO(logger, "Logging system initialized successfully");
@@ -151,7 +157,9 @@ bool ApplicationPrivate::initializeLogging()
     {
         std::cerr << "Failed to initialize logging: " << e.what() << std::endl;
         return false;
-    } catch (...) {
+    }
+    catch (...)
+    {
         std::cerr << "Failed to initialize logging with unknown error" << std::endl;
         return false;
     }
@@ -201,6 +209,8 @@ std::future<void> ApplicationPrivate::run()
 
     try
     {
+        positionalHandler->process();
+        namedHandler->process();//cmake-build-debug/src/main/cpp/atlas.main.bin input.txt --verbose --thread 4 --include path1 path2
         // Reset the promise before starting
         this->startPromise = std::promise<void>();
 

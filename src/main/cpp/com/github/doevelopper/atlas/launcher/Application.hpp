@@ -14,10 +14,9 @@
 #include <future>
 
 #include <com/github/doevelopper/atlas/logging/LoggingInitializer.hpp>
-#include <com/github/doevelopper/atlas/semver/Version.hpp>
-// #include <com/github/doevelopper/atlas/launcher/args/IOption.hpp>
+#include <com/github/doevelopper/atlas/launcher/args/IOption.hpp>
 #include <com/github/doevelopper/atlas/launcher/Package.hpp>
-
+#include <com/github/doevelopper/atlas/launcher/Package.hpp>
 namespace com::github::doevelopper::atlas::launcher
 {
 
@@ -102,7 +101,6 @@ namespace com::github::doevelopper::atlas::launcher
     private:
         std::unique_ptr<ApplicationPrivate> d_ptr;
         // Package m_package;
-        // std::shared_ptr<com::github::doevelopper::atlas::logging::CustomLogger> m_loggerService;
     };
 }
 

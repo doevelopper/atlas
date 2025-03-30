@@ -22,6 +22,8 @@
 #include <com/github/doevelopper/atlas/logging/ProgrammaticInitializationStrategy.hpp>
 #include <com/github/doevelopper/atlas/semver/Version.hpp>
 
+#include <com/github/doevelopper/atlas/launcher/args/CommandLineParser.hpp>
+
 namespace com::github::doevelopper::atlas::launcher
 {
 
@@ -163,6 +165,10 @@ namespace com::github::doevelopper::atlas::launcher
         
         // Promise for signaling application shutdown completion
         std::promise<void> shutdownPromise;
+
+        std::unique_ptr<com::github::doevelopper::atlas::launcher::args::IOption> positionalHandler;
+        std::unique_ptr<com::github::doevelopper::atlas::launcher::args::IOption> namedHandler;
+        com::github::doevelopper::atlas::launcher::args::CommandLineParser parser;
     };
 }
 

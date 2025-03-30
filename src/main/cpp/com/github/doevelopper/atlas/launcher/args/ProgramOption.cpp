@@ -20,6 +20,7 @@ ProgramOption::~ProgramOption() noexcept
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
+/*
 void ProgramOption::parseArguments(
     boost::program_options::options_description const & description, int argc, char const * argv[])
 {
@@ -80,7 +81,7 @@ void ProgramOption::parseFile(
 
     std::istringstream config_stream(config_roots);
 
-    /* Read options from config files */
+    // Read options from config files
     for (std::string config_root; getline(config_stream, config_root, ':');)
     {
         auto const & afile = config_root + "/" + filename;
@@ -168,3 +169,4 @@ void ProgramOption::unparsedTokens(const std::vector<std::string> & unparsed_tok
 {
     this->m_unparsed_tokens = unparsed_tokens;
 }
+*/

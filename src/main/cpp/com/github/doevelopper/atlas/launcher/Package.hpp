@@ -7,7 +7,7 @@
 #include <regex>
 #include <log4cxx/logger.h>
 
-#include <com/github/doevelopper/atlas/semver/Version.hpp>
+#include <com/github/doevelopper/atlas/semver/VersionConstraint.hpp>
 
 namespace com::github::doevelopper::atlas::launcher
 {

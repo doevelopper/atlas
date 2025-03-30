@@ -28,14 +28,14 @@ namespace com::github::doevelopper::atlas::launcher::args
         AbstractOption & operator=(AbstractOption &&)      = default;
         ~AbstractOption() noexcept override;
 
-        bool is_set(const char * name) const override;
-        bool get(const char * name, bool default_) const override;
-        std::string get(const char * name, const char * default_) const override;
-        int get(const char * name, int default_) const override;
-        const boost::any & get(const char * name) const override;
-
-        template <typename Type>
-        Type get(char const * name) const;
+        // bool is_set(const char * name) const override;
+        // bool get(const char * name, bool default_) const override;
+        // std::string get(const char * name, const char * default_) const override;
+        // int get(const char * name, int default_) const override;
+        // const boost::any & get(const char * name) const override;
+        //
+        // template <typename Type>
+        // Type get(char const * name) const;
 
     protected:
     private:

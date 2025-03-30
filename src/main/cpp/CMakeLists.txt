@@ -88,8 +88,32 @@ add_library(
         com/github/doevelopper/atlas/launcher/Application.hpp
         com/github/doevelopper/atlas/launcher/ApplicationPrivate.cpp
         com/github/doevelopper/atlas/launcher/ApplicationPrivate.hpp
+        com/github/doevelopper/atlas/launcher/args/AbstractOption.cpp
+        com/github/doevelopper/atlas/launcher/args/AbstractOption.hpp
+        com/github/doevelopper/atlas/launcher/args/CommandLineParser.cpp
+        com/github/doevelopper/atlas/launcher/args/CommandLineParser.hpp
+        com/github/doevelopper/atlas/launcher/args/IOption.cpp
+        com/github/doevelopper/atlas/launcher/args/IOption.hpp
+        com/github/doevelopper/atlas/launcher/args/NamedOption.cpp
+        com/github/doevelopper/atlas/launcher/args/NamedOption.hpp
+        com/github/doevelopper/atlas/launcher/args/ProgramOption.cpp
+        com/github/doevelopper/atlas/launcher/args/ProgramOption.hpp
+        com/github/doevelopper/atlas/launcher/args/PositionalOption.cpp
+        com/github/doevelopper/atlas/launcher/args/PositionalOption.hpp
         com/github/doevelopper/atlas/launcher/Package.cpp
         com/github/doevelopper/atlas/launcher/Package.hpp
+
+        com/github/doevelopper/atlas/errmgr/ErrorCodeBase.cpp
+        com/github/doevelopper/atlas/errmgr/ErrorCodeBase.hpp
+
+#        com/github/doevelopper/atlas/lic/ILicense.cpp
+#        com/github/doevelopper/atlas/lic/ILicense.hpp
+#        com/github/doevelopper/atlas/lic/ITypes.cpp
+#        com/github/doevelopper/atlas/lic/ITypes.hpp
+#        com/github/doevelopper/atlas/lic/IValidator.cpp
+#        com/github/doevelopper/atlas/lic/IValidator.hpp
+#        com/github/doevelopper/atlas/lic/utils/HardwareID.cpp
+#        com/github/doevelopper/atlas/lic/utils/HardwareID.hpp
 
         com/github/doevelopper/atlas/logging/CustomLogger.cpp
         com/github/doevelopper/atlas/logging/CustomLogger.hpp
@@ -115,6 +139,12 @@ add_library(
         com/github/doevelopper/atlas/semver/GitRevision.hpp
         com/github/doevelopper/atlas/semver/Version.hpp
         com/github/doevelopper/atlas/semver/Version.cpp
+        com/github/doevelopper/atlas/semver/VersionConstraint.cpp
+        com/github/doevelopper/atlas/semver/VersionConstraint.hpp
+
+        com/github/doevelopper/atlas/time/WaitNotifier.cpp
+        com/github/doevelopper/atlas/time/WaitNotifier.hpp
+
 #[[
         com/github/doevelopper/atlas/storage/BasePtr.cpp
         com/github/doevelopper/atlas/storage/BasePtr.hpp
@@ -152,12 +182,6 @@ add_library(
         com/github/doevelopper/atlas/barriers/RecursiveReadLock.hpp
         com/github/doevelopper/atlas/barriers/RecursiveWriteLock.cpp
         com/github/doevelopper/atlas/barriers/RecursiveWriteLock.hpp
-        com/github/doevelopper/atlas/launcher/args/IOption.cpp
-        com/github/doevelopper/atlas/launcher/args/IOption.hpp
-        com/github/doevelopper/atlas/launcher/args/AbstractOption.cpp
-        com/github/doevelopper/atlas/launcher/args/AbstractOption.hpp
-        com/github/doevelopper/atlas/launcher/args/ProgramOption.cpp
-        com/github/doevelopper/atlas/launcher/args/ProgramOption.hpp
         com/github/doevelopper/atlas/launcher/args/IConfiguration.cpp
         com/github/doevelopper/atlas/launcher/args/IConfiguration.hpp
         com/github/doevelopper/atlas/launcher/args/AbstractConfiguration.cpp

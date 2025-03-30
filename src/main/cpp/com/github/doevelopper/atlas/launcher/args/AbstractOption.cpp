@@ -15,6 +15,7 @@ AbstractOption::~AbstractOption() noexcept
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
+/*
 bool AbstractOption::is_set(const char * name) const
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
@@ -46,3 +47,4 @@ Type AbstractOption::get(char const * name) const
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
     return boost::any_cast<Type>(this->get(name));
 }
+*/

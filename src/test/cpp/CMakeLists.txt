@@ -76,6 +76,9 @@ add_executable (
 #        com/github/doevelopper/atlas/actor/CoordinatorTest.hpp
         com/github/doevelopper/atlas/semver/VersionTest.hpp
         com/github/doevelopper/atlas/semver/VersionTest.cpp
+
+        com/github/doevelopper/atlas/time/WaitNotifierTest.cpp
+        com/github/doevelopper/atlas/time/WaitNotifierTest.hpp
 ##        com/github/doevelopper/atlas/storage/BasePtrTest.cpp
 ##        com/github/doevelopper/atlas/storage/BasePtrTest.hpp
 ##        com/github/doevelopper/atlas/storage/CircularBufferTest.cpp

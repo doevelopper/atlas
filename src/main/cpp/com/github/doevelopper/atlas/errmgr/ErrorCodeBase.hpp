@@ -11,88 +11,13 @@
 #ifndef COM_GITHUB_DOEVELOPPER_ATLAS_ERRMGR_ERRORCODEBASE_HPP
 #define COM_GITHUB_DOEVELOPPER_ATLAS_ERRMGR_ERRORCODEBASE_HPP
 
-#include <com/github/doevelopper/atlas/logging/CustomLogger.hpp>
+#include <iostream>
+#include <unordered_map>
+#include <mutex>
+#include <string>
+#include <stdexcept>
 
-// clang-format off
-
-/*!
- *  @brief CLF Error and Misc Linux kernel error system interface :
- *         Exception class(for recoverable errors)
- *         Error class (for unrecoverable errors)
-           https://stackoverflow.com/questions/14196820/why-do-we-need-error-class
-
- *  <ul>
- *      <li> External
- *     <ol> <li>a href="https://docstore.mik.ua/orelly/java/langref/ch09_04.htm" target="_blank"><b>Java Exception &
- * Error class</b></a>
- *     </ol>
- *     <ol>
- *          <li>a href="https://docs.python.org/3.7/library/errno.html" target="_blank"><b>Python errore</b></a>
- *          <li>a href="https://docs.python.org/3.7/library/exceptions.html" target="_blank"><b>Exception
- * hierarchy</b></a>
- *          <li>a href="https://docs.python.org/3.7/library/errno.html" target="_blank"><b>Python errore</b></a>
- *     </ol>
- *      <li> OS based Error
- *          <ol>
- *              <li><a href="https://github.com/torvalds/linux/blob/master/include/uapi/asm-generic/errno.h"
- * target="_blank"><b>Python errore</b></a>
- *              <li><a href="https://github.com/torvalds/linux/blob/master/include/uapi/asm-generic/errno-base.h"
- * target="_blank"><b>Python errore</b></a>
- *              <li><a href="https://elixir.bootlin.com/linux/v6.12.17/source/include/uapi/asm-generic/errno.h"
- * target="_blank"><b>Linux errno.h</b></a>
- *              <li><a href="https://elixir.bootlin.com/linux/v6.12.17/source/include/uapi/asm-generic/errno-base.h"
- * target="_blank"><b>Linux errno-base.h</b></a>
- *          </ol>
- * </ul>
- *
- */
-
-/*! @defgroup CFS_Status_Codes CFS Error Space
- *  @brief Status Codes.
- *         Status Codes are 32 bit values formatted as follows:
-
-   ___________________________________________________________________________________________________________________
- |        | Sev   |  Res  |   Serv   |      Mission  Defined      |                       Code                      |
- |:------:|:-----:|:-----:|:--------:|:--------------------------:|:-----------------------------------------------:|
- | Class  | 3  3  | 2  2  | 2  2  2  | 2  2  2  2  2  1  1  1  1  | 1  1  1  1  1  1  -  -  -  -  -  -  -  -  -  -  |
- | Index  | 1  0  | 9  8  | 7  6  5  | 4  3  2  1  0  9  8  7  6  | 5  4  3  2  1  0  9  8  7  6  5  4  3  2  1  0  |
- | 32Bits | 32 31 | 30 29 | 28 27 26 | 25 24 23 22 21 20 19 18 17 | 16 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 |
-
-   _______________________________________________________________________________________
- |     |        ServiceID        |     |    |    Severity   |      |    |    Reserved   |
- |:---:|:-----------------------:|     |----|:-------------:|      |----|:-------------:|
- | 000 |    Not a CFE Service    |     | 00 |    Success    |      | 00 |    -------    |
- | 001 |    Events Services      |     | 01 | Informational |      | 01 |    -------    |
- | 010 |    Executive Services   |     | 10 |     Error     |      | 10 |    -------    |
- | 011 |    File Services        |     | 11 |    Critical   |      | 11 |    -------    |
- | 100 |    OS API Services      |
- | 101 |    Software Bus Services|
- | 110 |    Tables Services      |
- | 111 |    Time Services        |
-
-   _______________________________________________________________________________________________________
- |           |                                      Mission,Defined                                     |
- |:---------:|:----------------------------------------------------------------------------------------:|
- | 000000000 | Used to classify error codes related to application specific library function calls, etc.|
-
-   ______________________________________________________________________________________________________________
- |                  |                                      Error codes                                         |
- |:----------------:|:----------------------------------------------------------------------------------------:|
- | 0000000000000000 | Used to classify error codes   related  to mission specific library function calls, etc. |
-
-
- * @attention
- *    0xyyyy1bbb Normal failure (plausibly these should not even be "errors", but they are failures of the way
- *               operations are currently defined)
- *    0xyyyy15bb 15xx Platform errors
- *    2xxx user Attempt to do something illegal.
- *    2200 - errors from bindings and official APIs
- *    2300 - backup and restore errors
- *    4xxx - Internal errors (those that should be generated only by bugs) are decimal 4xxx
- */
-
-// clang-format on
-
+#include <com/github/doevelopper/atlas/logging/LoggingInitializer.hpp>
 
 namespace com::github::doevelopper::atlas::errmgr
 {
@@ -227,13 +152,64 @@ namespace com::github::doevelopper::atlas::errmgr
         Q_DISABLE_COPY_MOVE(ErrorCodeBase)
         LOG4CXX_DECLARE_STATIC_LOGGER
     public:
+        // Singleton instance accessor (thread-safe Meyers' singleton)
+        static ErrorCodeBase& Instance()
+        {
+            static ErrorCodeBase instance;
+            return instance;
+        }
+
         ErrorCodeBase() noexcept;
         virtual ~ErrorCodeBase() noexcept;
         std::string readErrorFileContents(const char* filename);
 
+        // Add a new error code (prevents duplicates)
+        void registerCode(int code, const std::string& description)
+        {
+            std::lock_guard<std::mutex> lock(this->m_mutex);
+            if (this->m_codes.find(code) != this->m_codes.end())
+            {
+                throw std::invalid_argument("Error code " + std::to_string(code) + " already exists");
+            }
+            this->m_codes[code] = description;
+        }
+
+        // Retrieve error description (thread-safe)
+        std::string what(int code) const
+        {
+            std::lock_guard<std::mutex> lock(this->m_mutex);
+            auto it = this->m_codes.find(code);
+            return it != this->m_codes.end() ? it->second : "Unknown error";
+        }
+
     protected:
     private:
         const char* err2msg(std::uint32_t code);
+        // Thread-safe container for error codes
+        mutable std::mutex m_mutex;
+        std::unordered_map<int, std::string> m_codes;
     };
 }
+/*
+int main() {
+    try {
+        // Register error codes
+        ErrorCode::Instance().registerCode(100, "File not found");
+        ErrorCode::Instance().registerCode(200, "Permission denied");
+
+        // Attempting duplicate registration would throw exception
+        // ErrorCode::Instance().registerCode(100, "Duplicate entry");
+
+        // Query descriptions
+        std::cout << "Error 100: " << ErrorCode::Instance().what(100) << std::endl;
+        std::cout << "Error 200: " << ErrorCode::Instance().what(200) << std::endl;
+        std::cout << "Error 300: " << ErrorCode::Instance().what(300) << std::endl;
+    }
+    catch(const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
+ */
 #endif
