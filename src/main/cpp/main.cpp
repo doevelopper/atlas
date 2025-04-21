@@ -26,7 +26,7 @@ using namespace com::github::doevelopper::atlas::logging;
  * @param argc number of string arguments passed via argv
  * @param argv array to command line arguments as strings
  *             (an array of character pointers)
- * @return the completion status code (zero indicates success)
+ * @return the completion status code (zero indicates SUCCESS, non-zero indicates FAILURE)
  */
 int main (
     [[maybe_unused]] int argc,
@@ -67,13 +67,15 @@ int main (
 
         runStatus = EXIT_SUCCESS;
     }
-    catch (const std::exception& e) {
+    catch (const std::exception& e)
+    {
         // auto errorLogger = log4cxx::Logger::getLogger("com.github.doevelopper.atlas.main");
         // LOG4CXX_ERROR(errorLogger, "Exception caught in main: " << e.what());
         std::cerr << "Exception caught in main: " << e.what() << std::endl;
         runStatus = EXIT_FAILURE;
     }
-    catch (...) {
+    catch (...)
+    {
         // auto errorLogger = log4cxx::Logger::getLogger("com.github.doevelopper.atlas.main");
         // LOG4CXX_ERROR(errorLogger, "Unknown exception caught in main");
         std::cerr << "Unknown exception caught in main." << std::endl;

@@ -12,6 +12,7 @@
 #define COM_GITHUB_DOEVELOPPER_ATLAS_LAUNCHER_APPLICATION_HPP
 
 #include <future>
+#include <cstdlib>
 
 #include <com/github/doevelopper/atlas/logging/LoggingInitializer.hpp>
 #include <com/github/doevelopper/atlas/launcher/args/IOption.hpp>
@@ -19,6 +20,10 @@
 #include <com/github/doevelopper/atlas/launcher/Package.hpp>
 namespace com::github::doevelopper::atlas::launcher
 {
+
+    using StatusCode = std::uint_fast64_t;
+    constexpr StatusCode SUCCESS = EXIT_SUCCESS;
+    constexpr StatusCode FAILURE = EXIT_FAILURE;
 
     class ApplicationPrivate;
     /**

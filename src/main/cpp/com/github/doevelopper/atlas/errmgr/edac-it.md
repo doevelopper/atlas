@@ -47,6 +47,12 @@ Error class (for unrecoverable errors)
 
 Status Codes are 32 bit values formatted as follows:
 
+Potential Improvements
+Service Field Size: If your system grows to include more than 8 modules, 3 bits might feel limiting. 
+You could reallocate bits from Mission Defined or Reserved, depending on your priorities.
+Severity Granularity: Two bits are adequate for most cases, but if you need finer distinctions (e.g., 5+ severity levels), you’d need to adjust the bit allocation.
+Class Row Clarification: The "Class" row in your table (e.g., "3 3 | 2 2 | ...") seems inconsistent with the bit counts (Sev is 2 bits, not 33). 
+It might be a typo or an alternate notation. If it’s intentional, clarify its meaning; otherwise, align it with the 32Bits row for consistency.
 
    ___________________________________________________________________________________________________________________
  |        | Sev   |  Res  |   Serv   |      Mission  Defined      |                       Code                      |
