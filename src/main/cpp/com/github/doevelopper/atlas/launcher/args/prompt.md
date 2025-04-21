@@ -1,1 +1,1 @@
-Kindly leverage SOLID patterns and implement a class that leverage all Command-Line Argument Types from boost program_options framework.
+Kindly leverage OOP C++ 17, best software practices, usefull design patterns, SOLID patterns,  and implement a framework that leverage all types Command-Line Argument from boost program_options framework.

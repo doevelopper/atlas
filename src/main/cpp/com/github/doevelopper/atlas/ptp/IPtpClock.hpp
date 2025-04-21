@@ -34,7 +34,88 @@ namespace com::github::doevelopper::atlas::ptp
         IPtpClock& operator=(const IPtpClock&) = default;
         IPtpClock& operator=(IPtpClock&&) = default;
         virtual ~IPtpClock() noexcept;
+        /*!
+         * @brief Start the PTP clock.
+         *
+         * @details This method starts the PTP clock.
+         */
+        virtual void start() = 0;
+        /*!
+         * @brief Stop the PTP clock.
+         *
+         * @details This method stops the PTP clock.
+         */
+        virtual void stop() = 0;
+        /*!
+         * @brief Reset the PTP clock.
+         *
+         * @details This method resets the PTP clock.
+         */
+        virtual void reset() = 0;
+        /*!
+         * @brief Set the PTP clock to a specific time.
+         *
+         * @details This method sets the PTP clock to a specific time.
+         */
+        virtual void setTime(const std::chrono::nanoseconds& time) = 0;
+        /*!
+         * @brief Get the current time of the PTP clock.
+         *
+         * @details This method retrieves the current time of the PTP clock.
+         */
+        virtual std::chrono::nanoseconds getTime() const = 0;
+        /*!
+         * @brief Get the current time of the PTP clock in nanoseconds.
+         *
+         * @details This method retrieves the current time of the PTP clock in nanoseconds.
+         */
+        virtual std::chrono::nanoseconds getTimeInNanoseconds() const = 0;
+        /*!
+         * @brief Get the current time of the PTP clock in microseconds.
+         *
+         * @details This method retrieves the current time of the PTP clock in microseconds.
+         */
+        virtual std::chrono::microseconds getTimeInMicroseconds() const = 0;
+        /*!
+         * @brief Get the current time of the PTP clock in milliseconds.
+         *
+         * @details This method retrieves the current time of the PTP clock in milliseconds.
+         */
+        virtual std::chrono::milliseconds getTimeInMilliseconds() const = 0;
+        /*!
+         * @brief Start the PTP clock.
+         *
+         * @details This method starts the PTP clock.
+         */
+        virtual void update(const std::chrono::nanoseconds& offset) = 0;
+        /*!
+         * @brief Stop the PTP clock.
+         *
+         * @details This method stops the PTP clock.
+         */
+        virtual std::chrono::nanoseconds getOffset() const = 0;
+
+
     protected:
+         std::chrono::nanoseconds offset_ = std::chrono::nanoseconds(0);
+            /*!
+             * @brief Set the offset for the PTP clock.
+             *
+             * @details This method sets the offset for the PTP clock.
+             */
+            virtual  void setOffset(const std::chrono::nanoseconds& offset) = 0;
+            /*!
+             * @brief Get the offset for the PTP clock.
+             *
+             * @details This method retrieves the offset for the PTP clock.
+             */
+            void setOffset(const std::chrono::nanoseconds& offset) { offset_ = offset; }
+            /*!
+            * @brief Get the offset for the PTP clock.
+            *
+            * @details This method retrieves the offset for the PTP clock.
+            */
+            std::chrono::nanoseconds getOffset() const { return offset_; }
     private:
     };
 
